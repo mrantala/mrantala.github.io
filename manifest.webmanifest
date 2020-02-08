@@ -1,8 +1,8 @@
 {
-  "name": "Dev'Coffee",
-  "short_name": "DevCoffee",
+  "name": "Matt'browser",
+  "short_name": "Matt",
   "start_url": "index.html",
-  "display": "standalone",
+  "display": "browser",
   "description": "Making a PWA",
   "background_color": "#fdfdfd",
   "theme_color": "#db4938",
