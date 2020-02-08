@@ -25,6 +25,8 @@ self.addEventListener("install", installEvent => {
 })
 
 self.addEventListener('fetch', function(event) {
+    console.log("SELF");
+    console.log(self);
     console.log(event.request.url);
     
     try {
@@ -37,10 +39,17 @@ self.addEventListener('fetch', function(event) {
         console.log(err.message);
     }
 
-   event.respondWith(caches.match(event.request).then(function(response) {
-     return response || fetch(event.request);
-   })
- );
+    event.respondWith(
+        caches.match(event.request)
+            .then(function(response) {  
+                if (response) {
+                    return response;
+                }
+                return fetch(event.request);
+     //return response || fetch(event.request);
+            }
+        )
+    );
 });
 
 // self.addEventListener('fetch', function(event) {
