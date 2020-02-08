@@ -1,5 +1,3 @@
-console.log("A");
-
 const cacheName = "map-pwa1"
 const assets = [
   "/",
@@ -26,24 +24,24 @@ self.addEventListener("install", installEvent => {
 })
 
 self.addEventListener('fetch', function(event) {
- // console.log(event.request.url);
+ console.log(event.request.url);
  
   event.respondWith(
    caches.match(event.request).then(function(response) {
-     console.log("##############");
-     // console.log(event);
-     // console.log(response);
+     console.log("START ##############");
+     console.log(event);
+     console.log(response);
      
-     // if (response){
-        // console.log("Response!");
-        // console.log(caches);
-        // console.log(caches.keys());
+     if (response){
+        console.log("Response!");
+        console.log(caches);
         // //caches.put(event.request,response.clone());
-        // console.log(response.clone());
+        console.log(response.clone());
         
-     // } else { console.log("No Response!")};
-     // console.log("##############");
+     } else { console.log("No Response!")};
+     
+     console.log("END ##############");
      return response || fetch(event.request);
-   });
-  );
+   })
+ );
 });
