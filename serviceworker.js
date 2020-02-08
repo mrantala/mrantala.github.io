@@ -22,3 +22,7 @@ self.addEventListener("install", installEvent => {
     })
   )
 })
+
+self.addEventListener('fetch', function(event) {
+ console.log(event.request.url);
+});
