@@ -25,10 +25,10 @@ self.addEventListener("install", installEvent => {
 })
 
 self.addEventListener('fetch', function(event) {
-
+    console.log(event.request.url);
+    
     try {
         console.log(" START XXXXXXXXXXXXXXXXX");
-        console.log(response);
         console.log(event.request);
         console.log(fetch(event.request));
         console.log(caches);
@@ -37,7 +37,10 @@ self.addEventListener('fetch', function(event) {
         console.log(err.message);
     }
 
-    return response || fetch(event.request);
+   event.respondWith(caches.match(event.request).then(function(response) {
+     return response || fetch(event.request);
+   })
+ );
 });
 
 // self.addEventListener('fetch', function(event) {
