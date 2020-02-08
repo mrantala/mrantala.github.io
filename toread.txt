@@ -1,0 +1,14 @@
+Install button:
+https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_home_screen
+
+New Version:
+https://deanhume.com/displaying-a-new-version-available-progressive-web-app/
+
+Mozilla PWA: https://developer.mozilla.org/en-US/docs/Web/Manifest
+https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Installable_PWAs
+
+
+https://w3c.github.io/manifest/
+
+Workbox: https://www.twilio.com/blog/2018/06/installable-web-apps-practical-introduction-progressive-web-apps.html
+
