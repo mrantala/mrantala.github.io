@@ -1,3 +1,5 @@
+console.log("A");
+
 const cacheName = "map-pwa1"
 const assets = [
   "/",
