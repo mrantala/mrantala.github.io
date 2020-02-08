@@ -28,13 +28,17 @@ self.addEventListener('fetch', function(event) {
  
   event.respondWith(
    caches.match(event.request).then(function(response) {
-     if (response){
-        console.log("Response!");
-        caches.put(event.request,response.clone());
-        console.log(event);
-        console.log(response.clone());
+     console.log("##############");
+     console.log(event);
+     console.log(response);
+     console.log("##############");
+     // if (response){
+        // console.log("Response!");
+        // //caches.put(event.request,response.clone());
+        // console.log(event);
+        // console.log(response.clone());
         
-     } else { console.log("No Response!")}
+     // } else { console.log("No Response!")}
      return response || fetch(event.request);
    })
  );
