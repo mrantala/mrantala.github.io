@@ -24,11 +24,18 @@ self.addEventListener("install", installEvent => {
 })
 
 self.addEventListener('fetch', function(event) {
-    console.log(" START XXXXXXXXXXXXXXXXX");
-    console.log(response);
-    console.log(event.request);
-    console.log(fetch(event.request));
-    console.log(" END XXXXXXXXXXXXXXXXXX");
+
+    try {
+        console.log(" START XXXXXXXXXXXXXXXXX");
+        console.log(response);
+        console.log(event.request);
+        console.log(fetch(event.request));
+        console.log(caches);
+        console.log(" END XXXXXXXXXXXXXXXXXX");
+    } catch(err) {
+        console.log(err.message);
+    }
+
     return response || fetch(event.request);
 });
 
