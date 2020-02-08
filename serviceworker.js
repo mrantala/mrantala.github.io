@@ -38,12 +38,12 @@ self.addEventListener('fetch', function(event) {
         // console.log("Response!");
         // console.log(caches);
         // console.log(caches.keys());
-        caches.put(event.request,response.clone());
+        // //caches.put(event.request,response.clone());
         // console.log(response.clone());
         
      // } else { console.log("No Response!")};
      // console.log("##############");
      return response || fetch(event.request);
    });
- );
+  );
 });
