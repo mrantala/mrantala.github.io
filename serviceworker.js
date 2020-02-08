@@ -6,7 +6,7 @@ const assets = [
   "/js/app.js",
   "/images/coffee1.jpg",
   "/images/coffee2.jpg",
-  "/images/coffee3.jpg",
+  "/images/coffee3.jpg"
   // "/images/coffee4.jpg",
   // "/images/coffee5.jpg",
   // "/images/coffee6.jpg",
@@ -27,7 +27,7 @@ self.addEventListener('fetch', function(event) {
     console.log(" START XXXXXXXXXXXXXXXXX");
     console.log(response);
     console.log(event.request);
-    console.log(fetch(event.request);
+    console.log(fetch(event.request));
     console.log(" END XXXXXXXXXXXXXXXXXX");
     return response || fetch(event.request);
 });
