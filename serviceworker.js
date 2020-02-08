@@ -31,14 +31,16 @@ self.addEventListener('fetch', function(event) {
      console.log("##############");
      console.log(event);
      console.log(response);
-     console.log("##############");
+     
      if (response){
         console.log("Response!");
         console.log(caches);
-        // //caches.put(event.request,response.clone());
+        console.log(caches.keys());
+        caches.put(event.request,response.clone());
         console.log(response.clone());
         
      } else { console.log("No Response!")};
+     console.log("##############");
      return response || fetch(event.request);
    })
  );
