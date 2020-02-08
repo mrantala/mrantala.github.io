@@ -26,24 +26,24 @@ self.addEventListener("install", installEvent => {
 })
 
 self.addEventListener('fetch', function(event) {
- console.log(event.request.url);
+ // console.log(event.request.url);
  
   event.respondWith(
    caches.match(event.request).then(function(response) {
      console.log("##############");
-     console.log(event);
-     console.log(response);
+     // console.log(event);
+     // console.log(response);
      
-     if (response){
-        console.log("Response!");
-        console.log(caches);
-        console.log(caches.keys());
-        // caches.put(event.request,response.clone());
-        console.log(response.clone());
+     // if (response){
+        // console.log("Response!");
+        // console.log(caches);
+        // console.log(caches.keys());
+        caches.put(event.request,response.clone());
+        // console.log(response.clone());
         
-     } else { console.log("No Response!")};
-     console.log("##############");
+     // } else { console.log("No Response!")};
+     // console.log("##############");
      return response || fetch(event.request);
-   })
+   });
  );
 });
