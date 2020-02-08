@@ -24,11 +24,20 @@ self.addEventListener("install", installEvent => {
 })
 
 self.addEventListener('fetch', function(event) {
- console.log(event.request.url);
+    console.log(" START XXXXXXXXXXXXXXXXX");
+    console.log(response);
+    console.log(event.request);
+    console.log(fetch(event.request);
+    console.log(" END XXXXXXXXXXXXXXXXXX");
+    return response || fetch(event.request);
+});
+
+// self.addEventListener('fetch', function(event) {
+ // console.log(event.request.url);
  
-  event.respondWith(
-   caches.match(event.request).then(function(response) {
-     console.log("START ##############");
+  // event.respondWith(
+   // caches.match(event.request).then(function(response) {
+/*      console.log("START ##############");
      console.log(event);
      console.log(response);
      
@@ -40,8 +49,8 @@ self.addEventListener('fetch', function(event) {
         
      } else { console.log("No Response!")};
      
-     console.log("END ##############");
-     return response || fetch(event.request);
-   })
- );
-});
+     console.log("END ##############"); */
+     // return response || fetch(event.request);
+   // })
+ // );
+// });
