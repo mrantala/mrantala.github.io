@@ -1,5 +1,5 @@
 console.log("map-pwa1_c");
-const cacheName = "map-pwa1_c"
+const cacheName = "map-pwa1_d"
 const assets = [
   "/",
   "/index.html",
@@ -9,7 +9,7 @@ const assets = [
   "/images/coffee2.jpg",
   "/images/coffee3.jpg",
   "/images/coffee4.jpg",
-  "https://fonts.gstatic.com/s/nunito/v12/XRXW3I6Li01BKofAjsOUYevI.woff2",
+  // "https://fonts.gstatic.com/s/nunito/v12/XRXW3I6Li01BKofAjsOUYevI.woff2",
   // "https://fonts.gstatic.com/s/nunito/v12/XRXV3I6Li01BKofINeaB.woff2",
   // "/images/coffee5.jpg",
   // "/images/coffee6.jpg",
