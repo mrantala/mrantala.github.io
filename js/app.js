@@ -50,7 +50,7 @@ if ("serviceWorker" in navigator) {
         if (refreshing) return;
         window.location.reload();
         refreshing = true;
-    });
+    };
     
     // navigator.serviceWorker.addEventListener('controllerchange', function () {console.log("controllerChange trigger");
         // if (refreshing) return;
