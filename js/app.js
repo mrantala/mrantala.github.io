@@ -53,11 +53,13 @@ if ("serviceWorker" in navigator) {
             console.log(newWorker.state);
             switch (newWorker.state) {
                 case 'installed':
+                console.log("here!!")
+                console.log(navigator.serviceWorker.controller);
                     // There is a new service worker available, show the notification
                     if (navigator.serviceWorker.controller) {
-                        let notification = document.getElementById('notification');
+                        let notification = document.getElementById('notification');console.log(notification);
                         notification.className = 'show';
-                        console.log(notification);
+                        
                     }
                 break;
           }
