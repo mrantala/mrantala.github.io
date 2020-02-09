@@ -48,3 +48,10 @@ self.addEventListener('message', function (event) {
     self.skipWaiting();
   }
 })
+
+self.addEventListener('controllerchange', function () {console.log("controllerChange trigger 2");
+    if (refreshing) return;
+    window.location.reload();
+    refreshing = true;
+});
+    
