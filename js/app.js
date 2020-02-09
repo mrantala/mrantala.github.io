@@ -51,8 +51,7 @@ if ("serviceWorker" in navigator) {
             // Has service worker state changed?
             console.log("State change");
             console.log(newWorker.state);
-            switch (newWorker.state) {
-                case 'installed':
+            if (newWorker.state == 'installed') {
                 console.log("here!!")
                 console.log(navigator.serviceWorker.controller);
                     // There is a new service worker available, show the notification
@@ -61,8 +60,7 @@ if ("serviceWorker" in navigator) {
                         notification.className = 'show';
                         
                     }
-                break;
-          }
+            }
         });
     });
     return res;
