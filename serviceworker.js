@@ -40,18 +40,19 @@ self.addEventListener('fetch', function(event) {
     }
 
     if (event.request.url.includes("app.js")){ console.log("section 1");
-        event.respondWith(
-            // caches.match(event.request)
-                // .then(function(response) {  
+         event.respondWith(
+            caches.match(event.request)
+                .then(function(response) {  
                     // if (response) {
-                        // console.log("response!");
+                        // console.log("response 2!");
                         // return response;
                     // }
-                    console.log("fetch!");
+                    console.log("fetch 1!");
                     return fetch(event.request);
          //return response || fetch(event.request);
-                // }
+                }
             )
+        )
         // );
     } else {console.log("section 2");
         event.respondWith(
