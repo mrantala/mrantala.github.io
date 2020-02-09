@@ -1,4 +1,4 @@
-const cacheName = "map-pwa1_h";
+const cacheName = "map-pwa1_h2";
 console.log(cacheName);
 const assets = [
   "/",
