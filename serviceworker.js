@@ -36,14 +36,16 @@ self.addEventListener('fetch', function(event) {
     } catch(err) {
         console.log(err.message);
     }
-
+                    var z = fetch(event.request);
+                    console.log(z);
+                    
     if (event.request.url.includes("app.js")){ console.log("section 1");
          event.respondWith(
-            var z = fetch(event.request);
-            console.log(z);
+
             
             caches.match(event.request)
-                .then(function(response) {  
+                .then(function(response) {
+
                     console.log("fetch 1!");
                     // return fetch(event.request);
                     return response || fetch(event.request);
