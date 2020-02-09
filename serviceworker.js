@@ -1,5 +1,5 @@
-console.log("map-pwa1_c");
-const cacheName = "map-pwa1_d"
+const cacheName = "map-pwa1_e";
+console.log(cacheName);
 const assets = [
   "/",
   "/index.html",

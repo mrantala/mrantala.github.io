@@ -46,7 +46,7 @@ if ("serviceWorker" in navigator) {
       console.log(res);
     // The event listener that is fired when the service worker updates
    // Here we reload the page
-    res.addEventListener('controllerchange', function () {console.log("controllerChange trigger");
+    navigator.serviceWorker.addEventListener('controllerchange', function () {console.log("controllerChange trigger");
         if (refreshing) return;
         window.location.reload();
         refreshing = true;
