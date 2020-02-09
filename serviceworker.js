@@ -39,7 +39,7 @@ self.addEventListener('fetch', function(event) {
         console.log(err.message);
     }
 
-    if (3>2){ console.log("section 1");
+    if (event.request.url.includes(".jpg")){ console.log("section 1");
         event.respondWith(
             caches.match(event.request)
                 .then(function(response) {  
@@ -58,8 +58,10 @@ self.addEventListener('fetch', function(event) {
             caches.match(event.request)
                 .then(function(response) {  
                     if (response) {
+                        console.log("response 2!");
                         return response;
                     }
+                    console.log("fetch 2!");
                     return fetch(event.request);
          //return response || fetch(event.request);
                 }
