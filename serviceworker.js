@@ -41,17 +41,19 @@ self.addEventListener('fetch', function(event) {
                     
     if (event.request.url.includes("app.js")){ console.log("section 1");
          event.respondWith(
-
-            
-            caches.match(event.request)
+            fetch(event.request).then(function(response){
+              console.log(response);
+              if (response){
+                return response;
+              }
+              caches.match(event.request)
                 .then(function(response) {
-
-                    console.log("fetch 1!");
-                    // return fetch(event.request);
-                    return response || fetch(event.request);
-                }
-            )
-        )
+                    console.log("response 2!");
+                    console.log(response);
+                    return response;
+                })
+            })
+         )
         // );
     } else {console.log("section 2");
         event.respondWith(
