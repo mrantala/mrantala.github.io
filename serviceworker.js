@@ -39,20 +39,20 @@ self.addEventListener('fetch', function(event) {
         console.log(err.message);
     }
 
-    if (event.request.url.includes(".jpg")){ console.log("section 1");
+    if (event.request.url.includes("app.js")){ console.log("section 1");
         event.respondWith(
-            caches.match(event.request)
-                .then(function(response) {  
-                    if (response) {
-                        console.log("response!");
-                        return response;
-                    }
+            // caches.match(event.request)
+                // .then(function(response) {  
+                    // if (response) {
+                        // console.log("response!");
+                        // return response;
+                    // }
                     console.log("fetch!");
                     return fetch(event.request);
          //return response || fetch(event.request);
-                }
+                // }
             )
-        );
+        // );
     } else {console.log("section 2");
         event.respondWith(
             caches.match(event.request)
