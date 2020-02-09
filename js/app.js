@@ -42,8 +42,25 @@ if ("serviceWorker" in navigator) {
     console.log("eee");   
   }
   function addUpdateFound(res){
-      console.log("set upate found");
-    res.addEventListener('updatefound', () => {console.log("updae Found!") });
+    console.log("set update found");
+    res.addEventListener('updatefound', () => {
+        console.log("update Found!");
+        let newWorker;
+        newWorker = res.installing;
+        newWorker.addEventListener('statechange', () => {
+            // Has service worker state changed?
+            switch (newWorker.state) {
+                case 'installed':
+                    // There is a new service worker available, show the notification
+                    if (navigator.serviceWorker.controller) {
+                        let notification = document.getElementById('notification');
+                        notification.className = 'show';
+                        console.log(notification);
+                    }
+                break;
+          }
+        });
+    });
     return res;
   }
   
