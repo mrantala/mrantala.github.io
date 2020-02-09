@@ -44,8 +44,10 @@ self.addEventListener('fetch', function(event) {
             caches.match(event.request)
                 .then(function(response) {  
                     if (response) {
+                        console.log("response!");
                         return response;
                     }
+                    console.log("fetch!");
                     return fetch(event.request);
          //return response || fetch(event.request);
                 }
