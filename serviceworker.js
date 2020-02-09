@@ -1,4 +1,4 @@
-console.log("serviceworker! 2");
+console.log("serviceworker! 9");
 const cacheName = "map-pwa1"
 const assets = [
   "/",
