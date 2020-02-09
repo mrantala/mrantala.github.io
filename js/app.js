@@ -35,26 +35,30 @@ if ("serviceWorker" in navigator) {
 
   function reg(res){
    console.log("service worker registered");
-   console.log(res); 
+   console.log(res);
+    return res;   
   }
   function eee(res){
     console.log("eee");   
   }
-  window.addEventListener("load", function() {
-    navigator.serviceWorker
-      .register("/serviceworker.js")
-      .then(reg).then(eee)
-      .catch(err => console.log("service worker not registered", err))
-  })
-
-   
-   // The event listener that is fired when the service worker updates
+  function addControllerChange(res){
+      console.log("set controllerChange");
+      console.log(res);
+    // The event listener that is fired when the service worker updates
    // Here we reload the page
-    navigator.serviceWorker.addEventListener('controllerchange', function () {console.log("controllerChange");
+    res.addEventListener('controllerchange', function () {console.log("controllerChange trigger");
         if (refreshing) return;
         window.location.reload();
         refreshing = true;
-    });
+    }); 
+  }
+  
+  window.addEventListener("load", function() {
+    navigator.serviceWorker
+      .register("/serviceworker.js")
+      .then(reg).then(addControllerChange).then(eee)
+      .catch(err => console.log("service worker not registered", err))
+  })
 }
 
 /* if ("serviceWorker" in navigator) {
