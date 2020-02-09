@@ -1,4 +1,4 @@
-const cacheName = "map-pwa1_h3b";
+const cacheName = "pwa_h3c";
 console.log(cacheName);
 const assets = [
   "/",
@@ -49,9 +49,9 @@ self.addEventListener('message', function (event) {
   }
 })
 
-self.addEventListener('controllerchange', function () {console.log("controllerChange trigger 2");
-    if (refreshing) return;
-    window.location.reload();
-    refreshing = true;
-});
+// self.addEventListener('controllerchange', function () {console.log("controllerChange trigger 2");
+    // if (refreshing) return;
+    // window.location.reload();
+    // refreshing = true;
+// });
     
