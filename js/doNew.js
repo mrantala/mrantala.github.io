@@ -1,0 +1,3 @@
+doNew(){
+  console.log("old");
+}
