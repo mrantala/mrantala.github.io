@@ -1,4 +1,4 @@
-console.log("serviceworker! 9c");
+console.log("serviceworker! 9d");
 const cacheName = "map-pwa1"
 const assets = [
   "/",
@@ -32,6 +32,7 @@ self.addEventListener('fetch', function(event) {
                     console.log("response");
                     return response;
                 }
+                console.log(event.request);
                 console.log("fetch");
                 return fetch(event.request);
             }
