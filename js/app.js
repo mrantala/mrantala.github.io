@@ -46,9 +46,11 @@ if ("serviceWorker" in navigator) {
     res.addEventListener('updatefound', () => {
         console.log("update Found!");
         let newWorker;
-        newWorker = res.installing;
+        newWorker = res.installing;console.log(newWorker);
         newWorker.addEventListener('statechange', () => {
             // Has service worker state changed?
+            console.log("State change");
+            console.log(newWorker.state);
             switch (newWorker.state) {
                 case 'installed':
                     // There is a new service worker available, show the notification
