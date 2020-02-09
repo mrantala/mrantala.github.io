@@ -41,3 +41,10 @@ self.addEventListener('fetch', function(event) {
         )
     );        
 });
+
+self.addEventListener('message', function (event) {
+  console.log(event);
+  if (event.data.action === 'skipWaiting') {
+    self.skipWaiting();
+  }
+})

@@ -29,11 +29,48 @@ const showCoffees = () => {
 
 document.addEventListener("DOMContentLoaded", showCoffees)
 
+let refreshing;
+
 if ("serviceWorker" in navigator) {
+
+    
   window.addEventListener("load", function() {
     navigator.serviceWorker
       .register("/serviceworker.js")
-      .then(res => console.log("service worker registered"))
+      .then(res => {
+          console.log("service worker registered");
+          console.log(res);
+          res.addEventListener('updatefound', () => {
+            console.log("UpdateFound");
+            let newWorker;
+            newWorker = res.installing;
+            newWorker.addEventListener('statechange', () => {
+
+                // Has service worker state changed?
+                switch (newWorker.state) {
+                    case 'installed':
+                    console.log("installed");
+                    // There is a new service worker available, show the notification
+                    if (navigator.serviceWorker.controller) {
+                        let notification = document.getElementById('notification ');
+                        notification .className = 'show';
+                    }
+                    break;
+          }
+        });
+        
+          }
+      })
       .catch(err => console.log("service worker not registered", err))
   })
+
+   
+   // The event listener that is fired when the service worker updates
+   // Here we reload the page
+    navigator.serviceWorker.addEventListener('controllerchange', function () {
+      if (refreshing) return;
+      window.location.reload();
+      refreshing = true;
+    });
+    
 }
