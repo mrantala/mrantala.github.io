@@ -56,10 +56,9 @@ if ("serviceWorker" in navigator) {
                         notification .className = 'show';
                     }
                     break;
-          }
-        });
-        
-          }
+                }
+            });
+          })
       })
       .catch(err => console.log("service worker not registered", err))
   })
@@ -68,9 +67,8 @@ if ("serviceWorker" in navigator) {
    // The event listener that is fired when the service worker updates
    // Here we reload the page
     navigator.serviceWorker.addEventListener('controllerchange', function () {
-      if (refreshing) return;
-      window.location.reload();
-      refreshing = true;
+        if (refreshing) return;
+        window.location.reload();
+        refreshing = true;
     });
-    
 }
