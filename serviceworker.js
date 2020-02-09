@@ -1,4 +1,4 @@
-console.log("serviceworker! 9d");
+console.log("serviceworker! 9d2");
 const cacheName = "map-pwa1_a"
 const assets = [
   "/",
@@ -10,7 +10,7 @@ const assets = [
   "/images/coffee3.jpg",
   "/images/coffee4.jpg",
   "https://fonts.gstatic.com/s/nunito/v12/XRXW3I6Li01BKofAjsOUYevI.woff2",
-  "https://fonts.gstatic.com/s/nunito/v12/XRXV3I6Li01BKofINeaB.woff2",
+  // "https://fonts.gstatic.com/s/nunito/v12/XRXV3I6Li01BKofINeaB.woff2",
   // "/images/coffee5.jpg",
   // "/images/coffee6.jpg",
   // "/images/coffee7.jpg",
