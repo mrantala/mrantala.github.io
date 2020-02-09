@@ -26,30 +26,44 @@ self.addEventListener("install", installEvent => {
 
 self.addEventListener('fetch', function(event) {
     console.log("SELF");
-    console.log(self);
-    console.log(event.request.url);
+    // console.log(self);
+    // console.log(event.request.url);
     
     try {
-        console.log(" START XXXXXXXXXXXXXXXXX");
+        // console.log(" START XXXXXXXXXXXXXXXXX");
         console.log(event.request);
-        console.log(fetch(event.request));
-        console.log(caches);
-        console.log(" END XXXXXXXXXXXXXXXXXX");
+        // console.log(fetch(event.request));
+        // console.log(caches);
+        // console.log(" END XXXXXXXXXXXXXXXXXX");
     } catch(err) {
         console.log(err.message);
     }
 
-    event.respondWith(
-        caches.match(event.request)
-            .then(function(response) {  
-                if (response) {
-                    return response;
+    if (3>2){ console.log("section 1");
+        event.respondWith(
+            caches.match(event.request)
+                .then(function(response) {  
+                    if (response) {
+                        return response;
+                    }
+                    return fetch(event.request);
+         //return response || fetch(event.request);
                 }
-                return fetch(event.request);
-     //return response || fetch(event.request);
-            }
-        )
-    );
+            )
+        );
+    } else {console.log("section 2");
+        event.respondWith(
+            caches.match(event.request)
+                .then(function(response) {  
+                    if (response) {
+                        return response;
+                    }
+                    return fetch(event.request);
+         //return response || fetch(event.request);
+                }
+            )
+        );        
+    }
 });
 
 // self.addEventListener('fetch', function(event) {
