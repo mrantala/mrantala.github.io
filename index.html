@@ -21,6 +21,11 @@
     <meta name="apple-mobile-web-app-status-bar" content="#db4938" />
     <meta name="theme-color" content="#db4938" />
 
+<style>
+hide {background-color: powderblue; color: white;}
+show   {background-color: pink;color: blue;}
+</style>
+
   </head>
   <body>
     <main>
@@ -31,7 +36,7 @@
         </ul>
       </nav>
       <div class="container"></div>
-      <div id="notification">A new version of this app is available. Click <a id="reload">here</a> to update.</div>
+      <div id="notification" class="hide">A new version of this app is available. Click <a id="reload">here</a> to update.</div>
     </main>
     <script src="js/app.js"></script>
   </body>

@@ -34,7 +34,7 @@ self.addEventListener('fetch', function(event) {
                     //console.log("cache");
                     return response;
                 }
-                console.log(event.request);
+                // console.log(event.request);
                 // console.log("fetch");
                 return fetch(event.request);
             }
