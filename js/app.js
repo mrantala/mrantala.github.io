@@ -40,25 +40,25 @@ if ("serviceWorker" in navigator) {
       .then(res => {
           console.log("service worker registered");
           console.log(res);
-          res.addEventListener('updatefound', () => {
-            console.log("UpdateFound");
-            let newWorker;
-            newWorker = res.installing;
-            newWorker.addEventListener('statechange', () => {
+          // res.addEventListener('updatefound', () => {
+            // console.log("UpdateFound");
+            // let newWorker;
+            // newWorker = res.installing;
+            // newWorker.addEventListener('statechange', () => {
 
-                // Has service worker state changed?
-                switch (newWorker.state) {
-                    case 'installed':
-                    console.log("installed");
-                    // There is a new service worker available, show the notification
-                    if (navigator.serviceWorker.controller) {
-                        let notification = document.getElementById('notification');
-                        notification.className = 'show';
-                    }
-                    break;
-                }
-            });
-          })
+                // //Has service worker state changed?
+                // switch (newWorker.state) {
+                    // case 'installed':
+                    // console.log("installed");
+                    // //There is a new service worker available, show the notification
+                    // if (navigator.serviceWorker.controller) {
+                        // let notification = document.getElementById('notification');
+                        // notification.className = 'show';
+                    // }
+                    // break;
+                // }
+            // });
+          // })
       })
       .catch(err => console.log("service worker not registered", err))
   })
