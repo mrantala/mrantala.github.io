@@ -1,3 +1,3 @@
-doNew(){
+function doNew(){
   console.log("old");
 }
