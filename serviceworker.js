@@ -9,6 +9,8 @@ const assets = [
   "/images/coffee2.jpg",
   "/images/coffee3.jpg",
   "/images/coffee4.jpg",
+  "https://fonts.gstatic.com/s/nunito/v12/XRXW3I6Li01BKofAjsOUYevI.woff2",
+  "https://fonts.gstatic.com/s/nunito/v12/XRXV3I6Li01BKofINeaB.woff2",
   // "/images/coffee5.jpg",
   // "/images/coffee6.jpg",
   // "/images/coffee7.jpg",
@@ -29,11 +31,11 @@ self.addEventListener('fetch', function(event) {
         caches.match(event.request)
             .then(function(response) {  
                 if (response) {
-                    console.log("response");
+                    //console.log("cache");
                     return response;
                 }
                 console.log(event.request);
-                console.log("fetch");
+                // console.log("fetch");
                 return fetch(event.request);
             }
         )
