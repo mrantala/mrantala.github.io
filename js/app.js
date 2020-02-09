@@ -33,7 +33,35 @@ let refreshing;
 
 if ("serviceWorker" in navigator) {
 
-    
+  function reg(res){
+   console.log("service worker registered");
+   console.log(res); 
+  }
+  function eee(res){
+    console.log("eee");   
+  }
+  window.addEventListener("load", function() {
+    navigator.serviceWorker
+      .register("/serviceworker.js")
+      .then(reg).then(eee)
+      .catch(err => console.log("service worker not registered", err))
+  })
+
+   
+   // The event listener that is fired when the service worker updates
+   // Here we reload the page
+    navigator.serviceWorker.addEventListener('controllerchange', function () {console.log("controllerChange");
+        if (refreshing) return;
+        window.location.reload();
+        refreshing = true;
+    });
+}
+
+/* if ("serviceWorker" in navigator) {
+
+  function reg(){
+  
+  }
   window.addEventListener("load", function() {
     navigator.serviceWorker
       .register("/serviceworker.js")
@@ -71,4 +99,4 @@ if ("serviceWorker" in navigator) {
         window.location.reload();
         refreshing = true;
     });
-}
+} */
