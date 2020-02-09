@@ -26,8 +26,6 @@ self.addEventListener("install", installEvent => {
 
 self.addEventListener('fetch', function(event) {
     console.log("SELF");
-    // console.log(self);
-    // console.log(event.request.url);
     
     try {
         // console.log(" START XXXXXXXXXXXXXXXXX");
@@ -41,15 +39,14 @@ self.addEventListener('fetch', function(event) {
 
     if (event.request.url.includes("app.js")){ console.log("section 1");
          event.respondWith(
+            var z = fetch(event.request);
+            console.log(z);
+            
             caches.match(event.request)
                 .then(function(response) {  
-                    // if (response) {
-                        // console.log("response 2!");
-                        // return response;
-                    // }
                     console.log("fetch 1!");
-                    return fetch(event.request);
-         //return response || fetch(event.request);
+                    // return fetch(event.request);
+                    return response || fetch(event.request);
                 }
             )
         )
