@@ -42,6 +42,7 @@ if ("serviceWorker" in navigator) {
     console.log("eee");   
   }
   function addUpdateFound(res){
+      console.log("set upate found");
     res.addEventListener('updatefound', () => {console.log("updae Found!" });
     return res;
   }
