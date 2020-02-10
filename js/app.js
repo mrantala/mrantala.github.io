@@ -1,3 +1,5 @@
+let newWorker;
+
 const container = document.querySelector(".container")
 const coffees = [
   { name: "One", image: "images/coffee1.jpg" },
@@ -45,7 +47,7 @@ if ("serviceWorker" in navigator) {
     console.log("set update found");
     res.addEventListener('updatefound', () => {
         console.log("update Found!");
-        let newWorker;
+        console.log(newWorker);
         newWorker = res.installing;console.log(newWorker);
         newWorker.addEventListener('statechange', () => {
             // Has service worker state changed?
@@ -92,46 +94,7 @@ if ("serviceWorker" in navigator) {
   })
 }
 
-/* if ("serviceWorker" in navigator) {
-
-  function reg(){
-  
-  }
-  window.addEventListener("load", function() {
-    navigator.serviceWorker
-      .register("/serviceworker.js")
-      .then(res => {
-          console.log("service worker registered");
-          console.log(res);
-          // res.addEventListener('updatefound', () => {
-            // console.log("UpdateFound");
-            // let newWorker;
-            // newWorker = res.installing;
-            // newWorker.addEventListener('statechange', () => {
-
-                // //Has service worker state changed?
-                // switch (newWorker.state) {
-                    // case 'installed':
-                    // console.log("installed");
-                    // //There is a new service worker available, show the notification
-                    // if (navigator.serviceWorker.controller) {
-                        // let notification = document.getElementById('notification');
-                        // notification.className = 'show';
-                    // }
-                    // break;
-                // }
-            // });
-          // })
-      })
-      .catch(err => console.log("service worker not registered", err))
-  })
-
-   
-   // The event listener that is fired when the service worker updates
-   // Here we reload the page
-    navigator.serviceWorker.addEventListener('controllerchange', function () {
-        if (refreshing) return;
-        window.location.reload();
-        refreshing = true;
-    });
-} */
+// The click event on the notification
+document.getElementById('reload').addEventListener('click', function(){
+    newWorker.postMessage({ action: 'skipWaiting' });
+});
