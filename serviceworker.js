@@ -1,4 +1,4 @@
-const cacheName = "pwa_4m";
+const cacheName = "pwa_4m2";
 console.log(cacheName);
 const assets = [
   "/",
@@ -31,11 +31,8 @@ self.addEventListener('fetch', function(event) {
         caches.match(event.request)
             .then(function(response) {  
                 if (response) {
-                    //console.log("cache");
                     return response;
                 }
-                // console.log(event.request);
-                // console.log("fetch");
                 return fetch(event.request);
             }
         )
