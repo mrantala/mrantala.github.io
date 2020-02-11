@@ -30,17 +30,47 @@ const showCoffees = () => {
 
 document.addEventListener("DOMContentLoaded", showCoffees)
 
-if ("serviceWorker" in navigator) {
-  console.log("service Work rocks");
-  window.addEventListener("load", function() {
-    navigator.serviceWorker
-      .register("/serviceWorker.js")
-      .then(res => console.log("service worker registered"))
-      .catch(err => console.log("service worker not registered", err))
-  })
-}
+// if ("serviceWorker" in navigator) {
+  // console.log("service Work rocks");
+  // window.addEventListener("load", function() {
+    // navigator.serviceWorker
+      // .register("/serviceWorker.js")
+      // .then(res => console.log("service worker registered"))
+      // .catch(err => console.log("service worker not registered", err))
+  // })
+// }
 
-// The click event on the notification
-document.getElementById('InstallButton').addEventListener('click', function(){console.log("Click 2");
-    // newWorker.postMessage({ action: 'skipWaiting' });
+  if ('serviceWorker' in navigator) {
+    // Register the service worker
+    console.log("service Work rocks2");
+    navigator.serviceWorker.register('/serviceWorker.js').then(reg => {
+      reg.addEventListener('updatefound', () => {
+
+        // An updated service worker has appeared in reg.installing!
+        newWorker = reg.installing;
+
+        newWorker.addEventListener('statechange', () => {
+
+          // Has service worker state changed?
+          switch (newWorker.state) {
+            case 'installed':
+
+    // There is a new service worker available, show the notification
+              if (navigator.serviceWorker.controller) {
+                let notification = document.getElementById('notification');
+                notification.className = 'show';
+              }
+
+              break;
+          }
+        });
+      });
+    }).catch(err => console.log("service worker not registered", err));
+
+  }
+  
+let newWorker;
+
+document.getElementById('reload').addEventListener('click', function(){
+    newWorker.postMessage({ action: 'skipWaiting' });
 });

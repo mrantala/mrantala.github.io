@@ -1,4 +1,4 @@
-const cacheName = "sw_5";
+const cacheName = "sw_5b";
 console.log(cacheName);
 const assets = [
   "/",
@@ -18,39 +18,42 @@ const assets = [
   // "/images/coffee9.jpg",
 ]
 
-// self.addEventListener("install", installEvent => {console.log("waitUntil");
-  // installEvent.waitUntil(
-    // caches.open(cacheName).then(cache => {console.log("addall");
-      // cache.addAll(assets);
-    // })
-  // )
-// })
+self.addEventListener("install", installEvent => {console.log("waitUntil");
+  installEvent.waitUntil(
+    caches.open(cacheName).then(cache => {console.log("addall");
+      cache.addAll(assets);
+    })
+  )
+})
 
-// self.addEventListener("fetch", fetchEvent => {
-  // fetchEvent.respondWith(
-    // caches.match(fetchEvent.request).then(res => {
-        // if (res) {
-            // return res;
-        // }
-        // console.log("fetch: "+fetchEvent.request);
-        // return fetch(fetchEvent.request);
-    // })
-  // )
-// })
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+        caches.match(event.request)
+            .then(function(response) {  
+                if (response) {
+                    return response;
+                }
+                return fetch(event.request);
+            }
+        )
+    );        
+});
 
-// self.addEventListener('fetch', function(event) {
-    // event.respondWith(
-        // caches.match(event.request)
-            // .then(function(response) {  
-                // if (response) {
-                    // return response;
-                // }
-                // return fetch(event.request);
-            // }
-        // )
-    // );        
-// });
+self.addEventListener('message', function (event) {
+  if (event.data.action === 'skipWaiting') {
+    self.skipWaiting();
+  }
+});
 
+let refreshing;
+// The event listener that is fired when the service worker updates
+// Here we reload the page
+self.addEventListener('controllerchange', function () {
+  if (refreshing) return;
+  window.location.reload();
+  refreshing = true;
+});
+    
 // self.addEventListener('message', function (event) {
   // console.log(event);
   // if (event.data.action === 'skipWaiting') {
