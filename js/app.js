@@ -1,3 +1,4 @@
+let newWorker;
 const container = document.querySelector(".container")
 const coffees = [
   { name: "One", image: "images/coffee1.jpg" },
@@ -69,8 +70,8 @@ document.addEventListener("DOMContentLoaded", showCoffees)
 
   }
   
-let newWorker;
 
-document.getElementById('reload').addEventListener('click', function(){
+
+document.getElementById('reload').addEventListener('click', function(){console.log("click");console.log(newWorker);
     newWorker.postMessage({ action: 'skipWaiting' });
 });
