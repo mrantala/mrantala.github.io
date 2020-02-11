@@ -18,10 +18,10 @@ const assets = [
   // "/images/coffee9.jpg",
 ]
 
-self.addEventListener("install", installEvent => {
+self.addEventListener("install", installEvent => {console.log("waitUntil");
   installEvent.waitUntil(
-    caches.open(cacheName).then(cache => {
-      cache.addAll(assets)
+    caches.open(cacheName).then(cache => {console.log("addall");
+      cache.addAll(assets);
     })
   )
 })
