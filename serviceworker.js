@@ -1,4 +1,4 @@
-const cacheName = "pwa_11e";
+const cacheName = "pwa_11f";
 console.log(cacheName);
 const assets = [
   "/",
