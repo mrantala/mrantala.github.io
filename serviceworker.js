@@ -38,11 +38,11 @@ self.addEventListener('message', function (event) {
   }
 });
 
-/* let refreshing;
+let refreshing;
 // The event listener that is fired when the service worker updates
 // Here we reload the page
 self.addEventListener('controllerchange', function () {
   if (refreshing) return;
   window.location.reload();
   refreshing = true;
-}); */
+});
