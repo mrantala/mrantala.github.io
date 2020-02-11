@@ -37,14 +37,13 @@ if ("serviceWorker" in navigator) {
 
   function reg(res){
    console.log("service worker registered");
-   console.log(res);
-    return res;   
+   return res;
   }
   function eee(res){
     console.log("eee");   
   }
-  function addUpdateFound(res){console.log(res);
-    console.log("set update found");
+  function addUpdateFound(res){
+    console.log("addUpdateFound");
     res.addEventListener('updatefound', () => {
         console.log("update Found!");
         console.log(newWorker);
@@ -70,7 +69,6 @@ if ("serviceWorker" in navigator) {
   
   function addControllerChange(res){
       console.log("set controllerChange");
-      console.log(res);
     // The event listener that is fired when the service worker updates
    // Here we reload the page
        navigator.serviceWorker.oncontrollerchange = function () {console.log("controllerChange trigger");
