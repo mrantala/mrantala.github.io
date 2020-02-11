@@ -1,3 +1,3 @@
 function doNew(){
-  console.log("old3");
+  console.log("DoNew");
 }

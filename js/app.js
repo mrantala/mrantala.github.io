@@ -1,5 +1,3 @@
-let newWorker;
-
 const container = document.querySelector(".container")
 const coffees = [
   { name: "One", image: "images/coffee1.jpg" },
@@ -14,6 +12,7 @@ const coffees = [
 ]
 
 const showCoffees = () => {
+    console.log("showCoffees");
   let output = ""
   coffees.forEach(
     ({ name, image }) =>
@@ -31,69 +30,11 @@ const showCoffees = () => {
 
 document.addEventListener("DOMContentLoaded", showCoffees)
 
-let refreshing;
-
 if ("serviceWorker" in navigator) {
-
-  function reg(res){
-   console.log("service worker registered");
-   return res;
-  }
-  function eee(res){
-    console.log("eee");   
-  }
-  function addUpdateFound(res){
-    console.log("addUpdateFound");
-    res.addEventListener('updatefound', () => {
-        console.log("update Found!");
-        console.log(newWorker);
-        console.log(res);
-        newWorker = res.installing;console.log(newWorker);
-        newWorker.addEventListener('statechange', () => {
-            // Has service worker state changed?
-            console.log("State change");
-            console.log(newWorker.state);
-            if (newWorker.state == 'installed') {
-                console.log("here!!")
-                console.log(navigator.serviceWorker.controller);
-                    // There is a new service worker available, show the notification
-                    if (navigator.serviceWorker.controller) {
-                        let notification = document.getElementById('notification');console.log(notification);
-                        notification.className = 'show';
-                        
-                    }
-            }
-        });
-    });
-    return res;
-  }
-  
-  function addControllerChange(res){
-      console.log("set controllerChange");
-    // The event listener that is fired when the service worker updates
-   // Here we reload the page
-       navigator.serviceWorker.oncontrollerchange = function () {console.log("controllerChange trigger");
-        // if (refreshing) return;
-        // window.location.reload();
-        // refreshing = true;
-    };
-    return res;
-    // navigator.serviceWorker.addEventListener('controllerchange', function () {console.log("controllerChange trigger");
-        // if (refreshing) return;
-        // window.location.reload();
-        // refreshing = true;
-    // }); 
-  }
-  
-  window.addEventListener("load", function() {console.log("load");
-    navigator.serviceWorker
-      .register("/serviceworker.js")
-      .then(reg).then(addControllerChange).then(addUpdateFound).then(eee)
-      .catch(err => console.log("service worker not registered", err))
-  })
+  console.log("service Work rocks");   
 }
 
 // The click event on the notification
 document.getElementById('InstallButton').addEventListener('click', function(){console.log("Click 2");
-    newWorker.postMessage({ action: 'skipWaiting' });
+    // newWorker.postMessage({ action: 'skipWaiting' });
 });
