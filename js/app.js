@@ -84,7 +84,7 @@ if ("serviceWorker" in navigator) {
     // }); 
   }
   
-  window.addEventListener("load", function() {
+  window.addEventListener("load", function() {console.log("load");
     navigator.serviceWorker
       .register("/serviceworker.js")
       .then(reg).then(addControllerChange).then(addUpdateFound).then(eee)
