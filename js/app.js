@@ -31,7 +31,13 @@ const showCoffees = () => {
 document.addEventListener("DOMContentLoaded", showCoffees)
 
 if ("serviceWorker" in navigator) {
-  console.log("service Work rocks");   
+  console.log("service Work rocks");
+  window.addEventListener("load", function() {
+    navigator.serviceWorker
+      .register("/serviceWorker.js")
+      .then(res => console.log("service worker registered"))
+      .catch(err => console.log("service worker not registered", err))
+  })
 }
 
 // The click event on the notification

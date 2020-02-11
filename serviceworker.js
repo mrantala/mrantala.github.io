@@ -1,4 +1,4 @@
-const cacheName = "pwa_5";
+const cacheName = "sw_5";
 console.log(cacheName);
 const assets = [
   "/",
@@ -18,33 +18,45 @@ const assets = [
   // "/images/coffee9.jpg",
 ]
 
-self.addEventListener("install", installEvent => {console.log("waitUntil");
-  installEvent.waitUntil(
-    caches.open(cacheName).then(cache => {console.log("addall");
-      cache.addAll(assets);
-    })
-  )
-})
+// self.addEventListener("install", installEvent => {console.log("waitUntil");
+  // installEvent.waitUntil(
+    // caches.open(cacheName).then(cache => {console.log("addall");
+      // cache.addAll(assets);
+    // })
+  // )
+// })
 
-self.addEventListener('fetch', function(event) {
-    event.respondWith(
-        caches.match(event.request)
-            .then(function(response) {  
-                if (response) {
-                    return response;
-                }
-                return fetch(event.request);
-            }
-        )
-    );        
-});
+// self.addEventListener("fetch", fetchEvent => {
+  // fetchEvent.respondWith(
+    // caches.match(fetchEvent.request).then(res => {
+        // if (res) {
+            // return res;
+        // }
+        // console.log("fetch: "+fetchEvent.request);
+        // return fetch(fetchEvent.request);
+    // })
+  // )
+// })
 
-self.addEventListener('message', function (event) {
-  console.log(event);
-  if (event.data.action === 'skipWaiting') {
-    self.skipWaiting();
-  }
-})
+// self.addEventListener('fetch', function(event) {
+    // event.respondWith(
+        // caches.match(event.request)
+            // .then(function(response) {  
+                // if (response) {
+                    // return response;
+                // }
+                // return fetch(event.request);
+            // }
+        // )
+    // );        
+// });
+
+// self.addEventListener('message', function (event) {
+  // console.log(event);
+  // if (event.data.action === 'skipWaiting') {
+    // self.skipWaiting();
+  // }
+// })
 
 // self.addEventListener('controllerchange', function () {console.log("controllerChange trigger 2");
     // if (refreshing) return;
