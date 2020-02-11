@@ -93,6 +93,6 @@ if ("serviceWorker" in navigator) {
 }
 
 // The click event on the notification
-document.getElementById('reload').addEventListener('click', function(){console.log("Click");
+document.getElementById('InstallButton').addEventListener('click', function(){console.log("Click 2");
     newWorker.postMessage({ action: 'skipWaiting' });
 });
