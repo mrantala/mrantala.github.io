@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.6d";
+const cacheName = "sw_0.0.6e";
 console.log(cacheName);
 const assets = [
   "/",
@@ -11,23 +11,13 @@ const assets = [
   // "/images/coffee4.jpg",
 ]
 
-self.addEventListener("install", installEvent => {console.log("waitUntil");
+self.addEventListener("install", installEvent => {
   installEvent.waitUntil(
-    caches.open(cacheName).then(cache => {console.log("addall");
+    caches.open(cacheName).then(cache => {
       cache.addAll(assets);
-/*       caches.keys().then(keylist => {
-      keylist.forEach(myFunction);
-
-        function myFunction(item, index) {
-          console.log(item,cacheName);
-          if (item != cacheName){
-            caches.delete(item);
-          }
-        }    
-      }); */
-    })
-  )
-})
+    });;
+  );
+});
 
 function clearOldCaches(){
     caches.keys().then(keylist => {
@@ -41,7 +31,6 @@ function clearOldCaches(){
     });
 }
 self.addEventListener('fetch', function(event) {
-    //console.log(event);
     event.respondWith(
 
         caches.match(event.request)
@@ -57,8 +46,7 @@ self.addEventListener('fetch', function(event) {
 
 self.addEventListener('message', function (event) {
   if (event.data.action === 'skipWaiting') {
-    clearOldCaches();//.then(function(nullItem){console.log(nullItem);
-        self.skipWaiting();
-    //});
+    clearOldCaches();
+    self.skipWaiting();
   }
 });

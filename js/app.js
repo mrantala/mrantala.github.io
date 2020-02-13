@@ -3,7 +3,7 @@ const container = document.querySelector(".container")
 const coffees = [
   { name: "One", image: "images/coffee1.jpg" },
   { name: "Two", image: "images/coffee2.jpg" },
-  { name: "Three", image: "images/coffee3.jpg" },
+  { name: "Three", image: "images/coffee5.jpg" },
   // { name: "Rchitecto", image: "images/coffee4.jpg" },
   // { name: " Beatae", image: "images/coffee5.jpg" },
   // { name: " Vitae", image: "images/coffee6.jpg" },
@@ -33,10 +33,8 @@ document.addEventListener("DOMContentLoaded", showCoffees);
 
   if ('serviceWorker' in navigator) {
     // Register the service worker
-    console.log("service Work rocks2");
     navigator.serviceWorker.register('/serviceworker.js').then(reg => {
       reg.addEventListener('updatefound', () => {
-        console.log("Found me an update!");
         // An updated service worker has appeared in reg.installing!
         newWorker = reg.installing;
 
@@ -45,7 +43,6 @@ document.addEventListener("DOMContentLoaded", showCoffees);
           if (newWorker.state){
               if (newWorker.state == "installed"){
                   if (navigator.serviceWorker.controller) {
-                      // newWorker.postMessage({ action: 'skipWaiting' });
                     let notification = document.getElementById('notification');
                     notification.className = 'show';
                   }
@@ -65,8 +62,7 @@ document.getElementById('reload').addEventListener('click', function(){console.l
 let refreshing;console.log(refreshing);console.log(self);
 // The event listener that is fired when the service worker updates
 // Here we reload the page
-navigator.serviceWorker.addEventListener('controllerchange', function () {console.log("controllerchange");
-console.log(refreshing);
+navigator.serviceWorker.addEventListener('controllerchange', function () {
   if (refreshing) {
       refreshing = false;
       return;
