@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.6a";
+const cacheName = "sw_0.0.6b";
 console.log(cacheName);
 const assets = [
   "/",
@@ -8,7 +8,7 @@ const assets = [
   "/images/coffee1.jpg",
   "/images/coffee2.jpg",
   "/images/coffee3.jpg",
-  "/images/coffee4.jpg",
+  // "/images/coffee4.jpg",
 ]
 
 self.addEventListener("install", installEvent => {console.log("waitUntil");

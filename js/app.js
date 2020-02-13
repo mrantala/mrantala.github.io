@@ -4,7 +4,7 @@ const coffees = [
   { name: "One", image: "images/coffee1.jpg" },
   { name: "Two", image: "images/coffee2.jpg" },
   { name: "Three", image: "images/coffee3.jpg" },
-  { name: "Rchitecto", image: "images/coffee4.jpg" },
+  // { name: "Rchitecto", image: "images/coffee4.jpg" },
   // { name: " Beatae", image: "images/coffee5.jpg" },
   // { name: " Vitae", image: "images/coffee6.jpg" },
   // { name: "Inventore", image: "images/coffee7.jpg" },
