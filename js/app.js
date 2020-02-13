@@ -29,17 +29,7 @@ const showCoffees = () => {
   doNew();
 }
 
-document.addEventListener("DOMContentLoaded", showCoffees)
-
-// if ("serviceWorker" in navigator) {
-  // console.log("service Work rocks");
-  // window.addEventListener("load", function() {
-    // navigator.serviceWorker
-      // .register("/serviceWorker.js")
-      // .then(res => console.log("service worker registered"))
-      // .catch(err => console.log("service worker not registered", err))
-  // })
-// }
+document.addEventListener("DOMContentLoaded", showCoffees);
 
   if ('serviceWorker' in navigator) {
     // Register the service worker
@@ -53,7 +43,7 @@ document.addEventListener("DOMContentLoaded", showCoffees)
         newWorker.addEventListener('statechange', () => {
 
           // Has service worker state changed?
-          switch (newWorker.state) {
+/*           switch (newWorker.state) {
             case 'installed':
 
     // There is a new service worker available, show the notification
@@ -63,6 +53,13 @@ document.addEventListener("DOMContentLoaded", showCoffees)
               }
 
               break;
+          } */
+          
+          if (newWorker.state){
+              if (navigator.serviceWorker.controller) {
+                let notification = document.getElementById('notification');
+                notification.className = 'show';
+              }
           }
         });
       });
