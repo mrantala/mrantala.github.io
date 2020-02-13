@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.5p6";
+const cacheName = "sw_0.0.5p8";
 console.log(cacheName);
 const assets = [
   "/",
@@ -21,11 +21,14 @@ self.addEventListener("install", installEvent => {console.log("waitUntil");
 
 self.addEventListener('fetch', function(event) {console.log(event);
     event.respondWith(
+
+        caches.match(event.request)
+            .then(function(response) {
+
         if (event.request.url.toLowerCase().includes("index.html")){console.log("Use new index.html");
             return response;
         }
-        caches.match(event.request)
-            .then(function(response) {  
+        
                 if (response) {
                     return response;
                 }
