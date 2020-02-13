@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.6f";
+const cacheName = "sw_0.0.6g";
 console.log(cacheName);
 const assets = [
   "/",
@@ -7,7 +7,7 @@ const assets = [
   "/js/app.js",
   "/images/coffee1.jpg",
   "/images/coffee2.jpg",
-  "/images/coffee3.jpg",
+  "/images/coffee5.jpg",
   // "/images/coffee4.jpg",
 ]
 
