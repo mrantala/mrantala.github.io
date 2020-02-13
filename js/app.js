@@ -67,7 +67,10 @@ let refreshing;console.log(refreshing);console.log(self);
 // Here we reload the page
 navigator.serviceWorker.addEventListener('controllerchange', function () {console.log("controllerchange");
 console.log(refreshing);
-  if (refreshing) return;
+  if (refreshing) {
+      refreshing = false;
+      return;
+  }
   window.location.reload();
   refreshing = true;
 });
