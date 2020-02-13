@@ -45,9 +45,9 @@ document.addEventListener("DOMContentLoaded", showCoffees);
           if (newWorker.state){
               if (newWorker.state == "installed"){
                   if (navigator.serviceWorker.controller) {
-                      newWorker.postMessage({ action: 'skipWaiting' });
-                    // let notification = document.getElementById('notification');
-                    // notification.className = 'show';
+                      // newWorker.postMessage({ action: 'skipWaiting' });
+                    let notification = document.getElementById('notification');
+                    notification.className = 'show';
                   }
               }
           }
@@ -58,9 +58,9 @@ document.addEventListener("DOMContentLoaded", showCoffees);
   }
 
 
-// document.getElementById('reload').addEventListener('click', function(){console.log("click");console.log(newWorker);
-    // newWorker.postMessage({ action: 'skipWaiting' });
-// });
+document.getElementById('reload').addEventListener('click', function(){console.log("click");console.log(newWorker);
+    newWorker.postMessage({ action: 'skipWaiting' });
+});
 
 let refreshing;console.log(refreshing);console.log(self);
 // The event listener that is fired when the service worker updates
