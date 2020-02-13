@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.5q5";
+const cacheName = "sw_0.0.5q6";
 console.log(cacheName);
 const assets = [
   "/",
@@ -15,7 +15,7 @@ self.addEventListener("install", installEvent => {console.log("waitUntil");
   installEvent.waitUntil(
     caches.open(cacheName).then(cache => {console.log("addall");
       cache.addAll(assets);
-      cache.keys().then function(keylist){
+      cache.keys().then(keylist => {
       keylist.forEach(myFunction);
 
         function myFunction(item, index) {
@@ -24,7 +24,7 @@ self.addEventListener("install", installEvent => {console.log("waitUntil");
             caches.delete(item);
           }
         }    
-      }
+      });
     })
   )
 })
