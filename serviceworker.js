@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.6c";
+const cacheName = "sw_0.0.6d";
 console.log(cacheName);
 const assets = [
   "/",
@@ -34,23 +34,18 @@ function clearOldCaches(){
       keylist.forEach(myFunction);
 
         function myFunction(item, index) {
-          console.log(item,cacheName);
           if (item != cacheName){
             caches.delete(item);
           }
         }
     });
 }
-self.addEventListener('fetch', function(event) {console.log(event);
+self.addEventListener('fetch', function(event) {
+    //console.log(event);
     event.respondWith(
 
         caches.match(event.request)
             .then(function(response) {
-// console.log(event.request.url.toLowerCase());
-        // if (event.request.url.toLowerCase().includes("index.html")){console.log("Use new index.html");
-            // return response;
-        // }
-        
                 if (response) {
                     return response;
                 }
@@ -61,9 +56,9 @@ self.addEventListener('fetch', function(event) {console.log(event);
 });
 
 self.addEventListener('message', function (event) {
-  if (event.data.action === 'skipWaiting') {console.log("Jimmy");
-    clearOldCaches().then(function(nullItem){console.log(nullItem);
+  if (event.data.action === 'skipWaiting') {
+    clearOldCaches();//.then(function(nullItem){console.log(nullItem);
         self.skipWaiting();
-    });
+    //});
   }
 });
