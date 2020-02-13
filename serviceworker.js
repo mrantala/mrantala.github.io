@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.5p9";
+const cacheName = "sw_0.0.5q";
 console.log(cacheName);
 const assets = [
   "/",
@@ -24,7 +24,7 @@ self.addEventListener('fetch', function(event) {console.log(event);
 
         caches.match(event.request)
             .then(function(response) {
-
+console.log(event.request.url.toLowerCase);
         if (event.request.url.toLowerCase().includes("index.html")){console.log("Use new index.html");
             return response;
         }
