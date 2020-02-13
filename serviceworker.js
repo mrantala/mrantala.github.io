@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.5i3";
+const cacheName = "sw_0.0.5j";
 console.log(cacheName);
 const assets = [
   "/",
@@ -38,7 +38,7 @@ self.addEventListener('message', function (event) {
   }
 });
 
-let refreshing;console.log(refreshing);console.log(self);
+/* let refreshing;console.log(refreshing);console.log(self);
 // The event listener that is fired when the service worker updates
 // Here we reload the page
 self.addEventListener('controllerchange', function () {console.log("controllerchange");
@@ -46,4 +46,4 @@ console.log(refreshing);
   if (refreshing) return;
   window.location.reload();
   refreshing = true;
-});
+}); */

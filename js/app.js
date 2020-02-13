@@ -60,3 +60,13 @@ document.addEventListener("DOMContentLoaded", showCoffees);
 document.getElementById('reload').addEventListener('click', function(){console.log("click");console.log(newWorker);
     newWorker.postMessage({ action: 'skipWaiting' });
 });
+
+let refreshing;console.log(refreshing);console.log(self);
+// The event listener that is fired when the service worker updates
+// Here we reload the page
+navigator.serviceWorker.addEventListener('controllerchange', function () {console.log("controllerchange");
+console.log(refreshing);
+  if (refreshing) return;
+  window.location.reload();
+  refreshing = true;
+});
