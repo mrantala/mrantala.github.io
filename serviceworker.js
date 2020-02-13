@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.5q4";
+const cacheName = "sw_0.0.5q5";
 console.log(cacheName);
 const assets = [
   "/",
@@ -15,6 +15,16 @@ self.addEventListener("install", installEvent => {console.log("waitUntil");
   installEvent.waitUntil(
     caches.open(cacheName).then(cache => {console.log("addall");
       cache.addAll(assets);
+      cache.keys().then function(keylist){
+      keylist.forEach(myFunction);
+
+        function myFunction(item, index) {
+          console.log(item,cacheName);
+          if (item != cacheName){
+            caches.delete(item);
+          }
+        }    
+      }
     })
   )
 })
@@ -24,10 +34,10 @@ self.addEventListener('fetch', function(event) {console.log(event);
 
         caches.match(event.request)
             .then(function(response) {
-console.log(event.request.url.toLowerCase());
-        if (event.request.url.toLowerCase().includes("index.html")){console.log("Use new index.html");
-            return response;
-        }
+// console.log(event.request.url.toLowerCase());
+        // if (event.request.url.toLowerCase().includes("index.html")){console.log("Use new index.html");
+            // return response;
+        // }
         
                 if (response) {
                     return response;
