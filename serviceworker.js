@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.5p3";
+const cacheName = "sw_0.0.5p4";
 console.log(cacheName);
 const assets = [
   "/",
@@ -19,7 +19,7 @@ self.addEventListener("install", installEvent => {console.log("waitUntil");
   )
 })
 
-self.addEventListener('fetch', function(event) {console.lot(event);
+self.addEventListener('fetch', function(event) {console.log(event);
     event.respondWith(
         caches.match(event.request)
             .then(function(response) {  
