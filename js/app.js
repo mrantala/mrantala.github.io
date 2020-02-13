@@ -56,9 +56,11 @@ document.addEventListener("DOMContentLoaded", showCoffees);
           } */
           
           if (newWorker.state){
-              if (navigator.serviceWorker.controller) {
-                let notification = document.getElementById('notification');
-                notification.className = 'show';
+              if (newWorker.state == "installed"){
+                  if (navigator.serviceWorker.controller) {
+                    let notification = document.getElementById('notification');
+                    notification.className = 'show';
+                  }
               }
           }
         });
