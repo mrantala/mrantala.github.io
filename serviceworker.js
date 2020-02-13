@@ -1,4 +1,4 @@
-const cacheName = "sw_5d4b";
+const cacheName = "sw_0.0.5c";
 console.log(cacheName);
 const assets = [
   "/",
