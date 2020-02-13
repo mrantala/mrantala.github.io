@@ -36,24 +36,11 @@ document.addEventListener("DOMContentLoaded", showCoffees);
     console.log("service Work rocks2");
     navigator.serviceWorker.register('/serviceworker.js').then(reg => {
       reg.addEventListener('updatefound', () => {
-
+        console.log("Found me an update!");
         // An updated service worker has appeared in reg.installing!
         newWorker = reg.installing;
 
         newWorker.addEventListener('statechange', () => {
-
-          // Has service worker state changed?
-/*           switch (newWorker.state) {
-            case 'installed':
-
-    // There is a new service worker available, show the notification
-              if (navigator.serviceWorker.controller) {
-                let notification = document.getElementById('notification');
-                notification.className = 'show';
-              }
-
-              break;
-          } */
           
           if (newWorker.state){
               if (newWorker.state == "installed"){
@@ -68,7 +55,6 @@ document.addEventListener("DOMContentLoaded", showCoffees);
     }).catch(err => console.log("service worker not registered", err));
 
   }
-  
 
 
 document.getElementById('reload').addEventListener('click', function(){console.log("click");console.log(newWorker);
