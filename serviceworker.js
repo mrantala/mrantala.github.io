@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.5r";
+const cacheName = "sw_0.0.6a";
 console.log(cacheName);
 const assets = [
   "/",
@@ -15,7 +15,7 @@ self.addEventListener("install", installEvent => {console.log("waitUntil");
   installEvent.waitUntil(
     caches.open(cacheName).then(cache => {console.log("addall");
       cache.addAll(assets);
-      caches.keys().then(keylist => {
+/*       caches.keys().then(keylist => {
       keylist.forEach(myFunction);
 
         function myFunction(item, index) {
@@ -24,11 +24,23 @@ self.addEventListener("install", installEvent => {console.log("waitUntil");
             caches.delete(item);
           }
         }    
-      });
+      }); */
     })
   )
 })
 
+function clearOldCaches(){
+    caches.keys().then(keylist => {
+      keylist.forEach(myFunction);
+
+        function myFunction(item, index) {
+          console.log(item,cacheName);
+          if (item != cacheName){
+            caches.delete(item);
+          }
+        }
+    });
+}
 self.addEventListener('fetch', function(event) {console.log(event);
     event.respondWith(
 
@@ -50,6 +62,8 @@ self.addEventListener('fetch', function(event) {console.log(event);
 
 self.addEventListener('message', function (event) {
   if (event.data.action === 'skipWaiting') {console.log("Jimmy");
-    self.skipWaiting();
+    clearOldCaches().then(function(nullItem){console.log(nullItem);
+        self.skipWaiting();
+    });
   }
 });
