@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.5d";
+const cacheName = "sw_0.0.5e";
 console.log(cacheName);
 const assets = [
   "/",
@@ -33,7 +33,7 @@ self.addEventListener('fetch', function(event) {
 });
 
 self.addEventListener('message', function (event) {
-  if (event.data.action === 'skipWaiting') {
+  if (event.data.action === 'skipWaiting') {console.log("Jimmy");
     self.skipWaiting();
   }
 });
