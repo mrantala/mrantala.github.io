@@ -3,17 +3,16 @@ console.log(cacheName);
 const assets = [
   "/",
   "/index.html",
-  "plugins/fontawesome-free/css/all.min.css",
+  "_assets/js/app.js",
   "dist/css/adminlte.min.css",
-  "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700",
-  "/js/app.js",
-  "/images/coffee1.jpg",
-  "plugins/jquery/jquery.min.js",
-  "plugins/bootstrap/js/bootstrap.bundle.min.js",
   "dist/js/adminlte.js",
-  "plugins/chartjs/Chart.min.js",
   "dist/js/demo.js",
   "dist/js/pages/dashboard3.js",
+  "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700",
+  "plugins/bootstrap/js/bootstrap.bundle.min.js",
+  "plugins/chartjs/Chart.min.js",
+  "plugins/fontawesome-free/css/all.min.css",
+  "plugins/jquery/jquery.min.js",
 ]
 
 self.addEventListener("install", installEvent => {
