@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.7";
+const cacheName = "sw_0.0.8";
 console.log(cacheName);
 const assets = [
   "/",
@@ -8,7 +8,14 @@ const assets = [
   "/images/coffee1.jpg",
   "/images/coffee2.jpg",
   "/images/coffee5.jpg",
-  // "/images/coffee4.jpg",
+  "/plugins/fontawesome-free/css/all.min.css",
+  "plugins/jquery/jquery.min.js",
+  "/dist/css/adminlte.min.css",
+  "plugins/bootstrap/js/bootstrap.bundle.min.js",
+  "dist/js/adminlte.js",
+  "plugins/chart.js/Chart.min.js",
+  "dist/js/demo.js",
+  "dist/js/pages/dashboard3.js",
 ]
 
 self.addEventListener("install", installEvent => {

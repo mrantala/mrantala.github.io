@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="css/style.css" />
-    <script src="js/doNew.js"></script>
-    <title>Matt's v5</title>
+    <script src="js/doNew.js"></script> <!--legacy -->
+    <title>WW</title>
 
     <link rel="manifest" href="manifest.webmanifest" />
     <!-- ios support -->
@@ -21,16 +21,25 @@
     <meta name="apple-mobile-web-app-status-bar" content="#db4938" />
     <meta name="theme-color" content="#db4938" />
 
-<style>
-.hide {background-color: powderblue; color: white; display:none;}
-.show   {background-color: pink;color: blue;}
-</style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <style>
+    .hide {background-color: powderblue; color: white; display:none;}
+    .show   {background-color: pink;color: blue;}
+    </style>
 
   </head>
   <body>
     <main>
       <nav>
-        <h1>Matt FS 0.0.7</h1>
+        <h1>Matt FS 0.0.88</h1>
         <ul>
           <li><button type="button" id="InstallButton">About</button></li>
         </ul>
@@ -39,5 +48,20 @@
       <div id="notification" class="hide">A new version of this app is available. Click <button type="button" id="reload">here</button> to update.</div>
     </main>
     <script src="js/app.js"></script>
+    
+    <!-- REQUIRED SCRIPTS -->
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE -->
+    <script src="dist/js/adminlte.js"></script>
+
+    <!-- OPTIONAL SCRIPTS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
+    <script src="dist/js/demo.js"></script>
+    <script src="dist/js/pages/dashboard3.js"></script>
+
   </body>
 </html>
