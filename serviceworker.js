@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.7h";
+const cacheName = "sw_0.0.7i";
 console.log(cacheName);
 const assets = [
   "/",
@@ -18,7 +18,7 @@ self.addEventListener("install", installEvent => {
   )
 });
 
-function clearOldCaches(){
+function clearOldCaches(i){
     caches.keys().then(keylist => {
       keylist.forEach(myFunction);
 
@@ -27,6 +27,7 @@ function clearOldCaches(){
             caches.delete(item);
           }
         }
+      i.skipWaiting();
     });
 }
 self.addEventListener('fetch', function(event) {
@@ -45,7 +46,7 @@ self.addEventListener('fetch', function(event) {
 
 self.addEventListener('message', function (event) {
   if (event.data.action === 'skipWaiting') {
-    clearOldCaches();
-    self.skipWaiting();
+    clearOldCaches(self);
+    //self.skipWaiting();
   }
 });
