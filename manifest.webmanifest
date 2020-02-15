@@ -1,9 +1,9 @@
 {
-  "name": "Matthew 0.0.88b",
-  "short_name": "ww88",
+  "name": "Matthew 0.0.7b",
+  "short_name": "Matt",
   "start_url": "index.html",
   "display": "fullscreen",
-  "description": "WW 88",
+  "description": "Making a PWA",
   "background_color": "#fdfdfd",
   "theme_color": "#db4938",
   "orientation": "portrait-primary",
