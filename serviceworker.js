@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.9f";
+const cacheName = "sw_0.0.7";
 console.log(cacheName);
 const assets = [
   "/",
@@ -25,19 +25,11 @@ function clearOldCaches(){
 
         function myFunction(item, index) {
           if (item != cacheName){
-              console.log("Delete",item);
             caches.delete(item);
           }
         }
     });
-    console.log("done Clearing caches");
-    return true;
 }
-function reloadPage(){
-  console.log("reloadPage");
-  self.skipWaiting();
-}
-
 self.addEventListener('fetch', function(event) {
     event.respondWith(
 
@@ -54,11 +46,7 @@ self.addEventListener('fetch', function(event) {
 
 self.addEventListener('message', function (event) {
   if (event.data.action === 'skipWaiting') {
-    console.log("Update start");
-    clearOldCaches().then(results => {
-      console.log("reloadPage");
-      self.skipWaiting();      
-    });
-    // self.skipWaiting();
+    clearOldCaches();
+    self.skipWaiting();
   }
 });
