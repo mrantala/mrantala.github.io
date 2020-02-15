@@ -11,7 +11,7 @@ const assets = [
   "plugins/jquery/jquery.min.js",
   "plugins/bootstrap/js/bootstrap.bundle.min.js",
   "dist/js/adminlte.js",
-  "plugins/chart.js/Chart.min.js",
+  "plugins/chartjs/Chart.min.js",
   "dist/js/demo.js",
   "dist/js/pages/dashboard3.js",
 ]
