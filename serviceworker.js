@@ -6,8 +6,6 @@ const assets = [
   "/css/style.css",
   "/js/app.js",
   "/images/coffee1.jpg",
-  // "/images/coffee2.jpg",
-  // "/images/coffee5.jpg",
 ]
 
 self.addEventListener("install", installEvent => {
@@ -43,8 +41,7 @@ self.addEventListener('fetch', function(event) {
                 }
                 return fetch(event.request);
             }
-        )
-    );        
+    );
 });
 
 self.addEventListener('message', function (event) {
