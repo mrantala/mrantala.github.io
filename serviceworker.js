@@ -3,7 +3,9 @@ console.log(cacheName);
 const assets = [
   "/",
   "/index.html",
-  "/css/style.css",
+  "plugins/fontawesome-free/css/all.min.css",
+  "dist/css/adminlte.min.css",
+  "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700",
   "/js/app.js",
   "/images/coffee1.jpg",
 ]
