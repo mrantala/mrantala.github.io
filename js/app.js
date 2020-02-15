@@ -67,6 +67,7 @@ navigator.serviceWorker.addEventListener('controllerchange', function () {
       refreshing = false;
       return;
   }
-  window.location.reload();
+  console.log("reload");
+  // window.location.reload();
   refreshing = true;
 });
