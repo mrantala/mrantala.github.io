@@ -1,12 +1,12 @@
-const cacheName = "ww_01";
+const cacheName = "ww_01b";
 console.log(cacheName);
 const assets = [
   "/",
   "/index.html",
+  "app/pages/widgets.html",
   "plugins/adminlte/css/adminlte.min.css",
   "plugins/adminlte/js/adminlte.js",
   "plugins/adminlte/js/demo.js",
-  "plugins/adminlte/js/pages/dashboard3.js",
   "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700",
   "plugins/bootstrap/js/bootstrap.bundle.min.js",
   "plugins/chartjs/Chart.min.js",
@@ -22,13 +22,14 @@ self.addEventListener("install", installEvent => {
   )
 });
 
-function clearOldCaches(i){
+function clearOldCaches(){
     caches.keys().then(keylist => {
       keylist.forEach(myFunction);
 
         function myFunction(item, index) {
           if (item != cacheName){
-            caches.delete(item);
+            // caches.delete(item);
+            console.log("Delete: "+item);
           }
         }
       i.skipWaiting();
@@ -49,7 +50,8 @@ self.addEventListener('fetch', function(event) {
 
 self.addEventListener('message', function (event) {
   if (event.data.action === 'skipWaiting') {
-    clearOldCaches(self);
     self.skipWaiting();
   }
 });
+
+clearOldCaches();
