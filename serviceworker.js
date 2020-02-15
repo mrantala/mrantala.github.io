@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.9c";
+const cacheName = "sw_0.0.9d";
 console.log(cacheName);
 const assets = [
   "/",
@@ -31,7 +31,7 @@ function clearOldCaches(){
         }
     });
     console.log("done Clearing caches");
-    return True;
+    return true;
 }
 function reloadPage(){
   console.log("reloadPage");
