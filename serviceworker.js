@@ -30,12 +30,9 @@ function clearOldCaches(i){
 }
 self.addEventListener('fetch', function(event) {
     event.respondWith(
-        console.log(event.request);
-        if ("index.html" in event.request.url){
-          console.log("Index.HTML!");    
-        }
         caches.match(event.request)
             .then(function(response) {
+                console.log("boom!");
                 if (response) {
                     return response;
                 }
