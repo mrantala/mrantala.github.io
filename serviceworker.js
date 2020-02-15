@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.7l";
+const cacheName = "sw_0.0.7n";
 console.log(cacheName);
 const assets = [
   "/",
@@ -32,7 +32,10 @@ function clearOldCaches(i){
 }
 self.addEventListener('fetch', function(event) {
     event.respondWith(
-
+        console.log(event.request);
+        if ("index.html" in event.request.url){
+          console.log("Index.HTML!");    
+        }
         caches.match(event.request)
             .then(function(response) {
                 if (response) {
@@ -47,6 +50,6 @@ self.addEventListener('fetch', function(event) {
 self.addEventListener('message', function (event) {
   if (event.data.action === 'skipWaiting') {
     clearOldCaches(self);
-    //self.skipWaiting();
+    self.skipWaiting();
   }
 });
