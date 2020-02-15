@@ -28,6 +28,7 @@ function clearOldCaches(i){
       i.skipWaiting();
     });
 }
+
 self.addEventListener('fetch', function(event) {
     event.respondWith(
         caches.match(event.request)
@@ -36,9 +37,8 @@ self.addEventListener('fetch', function(event) {
                     return response;
                 }
                 return fetch(event.request);
-            }
-        );
-    );
+            })
+    )
 });
 
 self.addEventListener('message', function (event) {
