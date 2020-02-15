@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", showCoffees);
 
   if ('serviceWorker' in navigator) {console.log("load SW");
     // Register the service worker
-    navigator.serviceWorker.register('/serviceworker.js&z=43').then(reg => {console.log("Register");
+    navigator.serviceWorker.register('/serviceworker.js').then(reg => {console.log("Register");
       reg.addEventListener('updatefound', () => {console.log("Update Found");
         // An updated service worker has appeared in reg.installing!
         newWorker = reg.installing;
