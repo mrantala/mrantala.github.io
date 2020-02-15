@@ -8,6 +8,12 @@ const assets = [
   "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700",
   "/js/app.js",
   "/images/coffee1.jpg",
+  "plugins/jquery/jquery.min.js",
+  "plugins/bootstrap/js/bootstrap.bundle.min.js",
+  "dist/js/adminlte.js",
+  "plugins/chart.js/Chart.min.js",
+  "dist/js/demo.js",
+  "dist/js/pages/dashboard3.js",
 ]
 
 self.addEventListener("install", installEvent => {
