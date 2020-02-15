@@ -31,18 +31,18 @@ const showCoffees = () => {
 
 document.addEventListener("DOMContentLoaded", showCoffees);
 
-  if ('serviceWorker' in navigator) {
+  if ('serviceWorker' in navigator) {console.log("load SW");
     // Register the service worker
-    navigator.serviceWorker.register('/serviceworker.js').then(reg => {
-      reg.addEventListener('updatefound', () => {
+    navigator.serviceWorker.register('/serviceworker.js').then(reg => {console.log("Register");
+      reg.addEventListener('updatefound', () => {console.log("Update Found");
         // An updated service worker has appeared in reg.installing!
         newWorker = reg.installing;
 
         newWorker.addEventListener('statechange', () => {
-          
-          if (newWorker.state){
-              if (newWorker.state == "installed"){
-                  if (navigator.serviceWorker.controller) {
+          console.log("statechange");
+          if (newWorker.state){console.log("1");
+              if (newWorker.state == "installed"){console.log("2");
+                  if (navigator.serviceWorker.controller) {console.log("3");
                     let notification = document.getElementById('notification');
                     notification.className = 'show';
                   }
