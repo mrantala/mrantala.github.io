@@ -3,7 +3,6 @@ console.log(cacheName);
 const assets = [
   "/",
   "/index.html",
-  "app.js",
   "dist/css/adminlte.min.css",
   "dist/js/adminlte.js",
   "dist/js/demo.js",
