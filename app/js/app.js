@@ -1,3 +1,5 @@
+console.log("app.js");
+
 if ('serviceWorker' in navigator) {
     // Register the service worker
     navigator.serviceWorker.register('/serviceworker.js').then(reg => {
