@@ -1,4 +1,4 @@
-const cacheName = "ww_01b";
+const cacheName = "ww_01c";
 console.log(cacheName);
 const assets = [
   "/",
@@ -32,7 +32,6 @@ function clearOldCaches(){
             console.log("Delete: "+item);
           }
         }
-      i.skipWaiting();
     });
 }
 
