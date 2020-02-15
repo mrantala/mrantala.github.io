@@ -1,4 +1,4 @@
-const cacheName = "sw_0.0.9b";
+const cacheName = "sw_0.0.9c";
 console.log(cacheName);
 const assets = [
   "/",
@@ -31,6 +31,7 @@ function clearOldCaches(){
         }
     });
     console.log("done Clearing caches");
+    return True;
 }
 function reloadPage(){
   console.log("reloadPage");
@@ -54,7 +55,10 @@ self.addEventListener('fetch', function(event) {
 self.addEventListener('message', function (event) {
   if (event.data.action === 'skipWaiting') {
     console.log("Update start");
-    clearOldCaches().then(reloadPage());
+    clearOldCaches().then(results => {
+      console.log("reloadPage");
+      self.skipWaiting();      
+    });
     // self.skipWaiting();
   }
 });
