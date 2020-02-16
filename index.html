@@ -40,12 +40,6 @@
           <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
           </li>
-          <!-- <li class="nav-item d-none d-sm-inline-block"> -->
-            <!-- <a href="index3.html" class="nav-link">Home</a> -->
-          <!-- </li> -->
-          <!-- <li class="nav-item d-none d-sm-inline-block"> -->
-            <!-- <a href="#" class="nav-link">Contact</a> -->
-          <!-- </li> -->
         </ul>
 
         <!-- SEARCH FORM -->
@@ -74,64 +68,50 @@
       <!-- Main Sidebar Container -->
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="" class="brand-link">
+        <a href="" class="brand-link blugold-nav" data-blugoldpage="0">
           <i class="img-circle fas fa-weight"></i>
           <span class="brand-text font-weight-light">Weight Tracker</span>
         </a>
 
         <!-- Sidebar -->
         <div class="sidebar">
-          <!-- Sidebar user panel (optional) -->
-          <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex"> -->
-            <!-- <div class="image"> -->
-              <!-- <img src="plugins/adminlte/img/matt.jpg" class="img-circle elevation-2" alt="User Image"> -->
-            <!-- </div> -->
-            <!-- <div class="info"> -->
-              <!-- <a href="#" class="d-block">Matt Rantala!</a> -->
-            <!-- </div> -->
-          <!-- </div> -->
-
           <!-- Sidebar Menu -->
           <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                    with font-awesome or any other icon font library -->
-              <li class="nav-item">
+              <li class="nav-item blugold-nav" data-blugoldpage="1">
                 <a class="nav-link">
                   <i class="nav-icon fas fa-table"></i>
                   <p>
                     Data
-                    <!-- <span class="right badge badge-danger">D</span> -->
                   </p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item blugold-nav" data-blugoldpage="2">
                 <a class="nav-link">
                   <i class="nav-icon fas fa-calculator"></i>
-                  <p>
+                  <span>
                     Report
-                    <!-- <span class="right badge badge-danger">Report</span> -->
-                  </p>
+                  </span>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item blugold-nav" data-blugoldpage="3">
                 <a class="nav-link">
                   <i class="nav-icon fas fa-chart-area"></i>
-                  <p>
+                  <!-- <span> -->
                     Chart
-                    <!-- <span class="right badge badge-danger">Chart</span> -->
-                  </p>
+                  <!-- </span> -->
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="app/pages/widgets.html" class="nav-link">
+              <li class="nav-item blugold-nav" data-blugoldpage="4">
+                <a class="nav-link">
                   <i class="nav-icon fas fa-user-cog"></i>
-                  <p>
+                  <span>
                     Settings
-                    <!-- <span class="right badge badge-danger">Settings</span> -->
-                  </p>
+                  </span>
                 </a>
-              </li>		  
+              </li>
             </ul>
           </nav>
           <!-- /.sidebar-menu -->
@@ -153,7 +133,21 @@
         <div class="content">
           <div class="container-fluid">
             <div class="row">
-
+<div class="blugold-page" data-blugoldpage="0">
+About
+</div>
+<div class="blugold-page hide" data-blugoldpage="1">
+Data
+</div>
+<div class="blugold-page hide" data-blugoldpage="2">
+Report
+</div>
+<div class="blugold-page hide" data-blugoldpage="3">
+Chart
+</div>
+<div class="blugold-page hide" data-blugoldpage="4">
+Settings
+</div>
             </div>
             <!-- /.row -->
           </div>
@@ -181,14 +175,19 @@
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
-    <script src="app/js/app.js"></script>
+
+    <script src="app/js/pwa.js"></script>
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
+
     <!-- Bootstrap -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE -->
     <script src="plugins/adminlte/js/adminlte.js"></script>
 
+    <script src="app/js/blugold.js"></script>
+    <link rel="stylesheet" href="app/css/blugold.css">
+    
     <!-- OPTIONAL SCRIPTS -->
     <script src="plugins/chartjs/Chart.min.js"></script>
     <script src="plugins/adminlte/js/demo.js"></script>

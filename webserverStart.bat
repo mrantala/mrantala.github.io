@@ -1,0 +1,1 @@
+c:\python27\ArcGIS10.7\python.exe -m SimpleHTTPServer 1337

@@ -1,4 +1,4 @@
-console.log("app.js");
+console.log("pwa.js");
 
 if ('serviceWorker' in navigator) {
     // Register the service worker

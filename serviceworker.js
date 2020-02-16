@@ -3,6 +3,9 @@ console.log(cacheName);
 const assets = [
   "/",
   "/index.html",
+  "app/css/blugold.css",
+  "app/js/blugold.js",
+  "app/js/pwa.js",
   "app/pages/widgets.html",
   "plugins/adminlte/css/adminlte.min.css",
   "plugins/adminlte/js/adminlte.js",
