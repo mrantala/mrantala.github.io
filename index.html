@@ -85,6 +85,7 @@
                   <i class="nav-icon fas fa-table"></i>
                   <p>
                     Data
+                    
                   </p>
                 </a>
               </li>
@@ -108,7 +109,7 @@
                 <a class="nav-link">
                   <i class="nav-icon fas fa-user-cog"></i>
                   <p>
-                    Settings.
+                    Settings
                   </p>
                 </a>
               </li>
@@ -138,6 +139,72 @@ About
 </div>
 <div class="blugold-page hide" data-blugoldpage="1">
 Data
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Enter Data<small>jQuery Validation</small></h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" id="quickForm">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label class="col-form-label" for="inputWarning"><i class="far fa-bell"></i> Input with
+                      warning</label>
+                    <input type="text" class="form-control is-warning" id="inputWarning" placeholder="Enter ...">
+                  </div>
+                                <!-- Date -->
+              <div class="form-group">
+                <label>Date:</label>
+
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right" id="datepicker">
+                </div>
+                <!-- /.input group -->
+              </div>
+              <!-- /.form group -->
+                      <div class="form-group">
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio">
+                          <label for="customRadio1" class="custom-control-label">lb</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" checked>
+                          <label for="customRadio2" class="custom-control-label">kg</label>
+                        </div>
+                      </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+              <button type="button" id="addWeight">Click Me!</button>
+            </div>
+            <!-- /.card -->
+            </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    
 </div>
 <div class="blugold-page hide" data-blugoldpage="2">
 Report
@@ -164,7 +231,7 @@ Settings
       <!-- /.control-sidebar -->
 
       <!-- Main Footer -->
-      <footer class="main-footer test-sm">
+      <footer class="main-footer text-sm">
         <strong>Copyright &copy; 2020 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
@@ -185,6 +252,7 @@ Settings
     <!-- AdminLTE -->
     <script src="plugins/adminlte/js/adminlte.js"></script>
 
+    <script src="app/js/app.js"></script>
     <script src="app/js/blugold.js"></script>
     <link rel="stylesheet" href="app/css/blugold.css">
     

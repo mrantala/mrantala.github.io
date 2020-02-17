@@ -5,22 +5,29 @@ const assets = [
   "/index.html",
   "app/css/blugold.css",
   "app/js/blugold.js",
+  // "app/js/app.js",
   "app/js/pwa.js",
   "app/pages/widgets.html",
   "plugins/adminlte/css/adminlte.min.css",
   "plugins/adminlte/js/adminlte.js",
   "plugins/adminlte/js/demo.js",
-  "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700",
+  // "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700",
   "plugins/bootstrap/js/bootstrap.bundle.min.js",
-  "plugins/chartjs/Chart.min.js",
-  "plugins/fontawesome-free/css/all.min.css",
-  "plugins/jquery/jquery.min.js",
+  // "plugins/chartjs/Chart.min.js",
+  // "plugins/fontawesome-free/css/all.min.css",
+  // "plugins/jquery/jquery.min.js",
 ]
 
 self.addEventListener("install", installEvent => {
   installEvent.waitUntil(
     caches.open(cacheName).then(cache => {
-      cache.addAll(assets);
+      // cache.addAll(assets);
+      assets.forEach(myFunction);
+      
+      function myFunction(iAsset){
+        console.log(iAsset);
+        cache.add(iAsset);
+      }
     })
   )
 });
