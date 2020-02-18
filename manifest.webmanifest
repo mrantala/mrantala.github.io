@@ -4,8 +4,8 @@
   "start_url": "index.html",
   "display": "fullscreen",
   "description": "Making a PWA",
-  "background_color": "#fdfdfd",
-  "theme_color": "#db4938",
+  "background_color": "#3c8dbc",
+  "theme_color": "#367fa9",
   "orientation": "portrait-primary",
   "icons": [
     {
