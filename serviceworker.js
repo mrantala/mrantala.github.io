@@ -10,7 +10,7 @@ const assets = [
   "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700",
   "lib/bootstrap/js/bootstrap.min.js",
   "lib/adminlte/css/AdminLTE.min.css",
-  "lib/adminlte/css/skins/skin-black.min.css",
+  "lib/adminlte/css/skins/skin-blue.min.css",
   "lib/adminlte/js/adminlte.min.js",
   "lib/font-awesome/css/font-awesome.min.css",
   "lib/jquery/jquery.min.js",
