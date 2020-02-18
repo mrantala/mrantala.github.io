@@ -36,7 +36,11 @@ function createDB(){
     // $('#datepicker').datepicker({
       // autoclose: true
     // })
-  
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    })
+    
 $("#addWeight").on('click', function (event){
     var dbOpenRequest = window.indexedDB.open(dbName,1);
     
