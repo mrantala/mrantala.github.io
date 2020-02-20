@@ -34,8 +34,11 @@ function createDB(){
 
     $('#datepicker').datepicker({
       autoclose: true
-    })
+    });
     
+$('#example1').DataTable({
+    "lengthMenu": [31,100,180,365]
+});
 $("#addWeight").on('click', function (event){
     var dbOpenRequest = window.indexedDB.open(dbName,1);
     

@@ -1,4 +1,4 @@
-const cacheName = "WwW_0.";
+const cacheName = "WwW_0.0.3";
 console.log(cacheName);
 const assets = [
   "/",
@@ -17,6 +17,9 @@ const assets = [
   "lib/font-awesome/css/font-awesome.min.css",
   "lib/jquery/jquery.min.js",
   "lib/jquery-ui/jquery-ui.min.js",
+  "lib/datatables.net-bs/css/dataTables.bootstrap.min.css",
+  "lib/datatables.net-bs/js/dataTables.bootstrap.min.js",
+  "lib/datatables.net/js/jquery.dataTables.min.js",
 ]
 
 self.addEventListener("install", installEvent => {
