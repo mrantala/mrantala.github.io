@@ -32,11 +32,6 @@ function createDB(){
     }
 }
 
-    // Date picker
-    // $('#datepicker').datepicker({
-      // autoclose: true
-    // })
-    //Date picker
     $('#datepicker').datepicker({
       autoclose: true
     })
@@ -48,7 +43,7 @@ $("#addWeight").on('click', function (event){
             var db = event.target.result;
             var transaction = db.transaction("weights","readwrite");
             var weightStore = transaction.objectStore(weightsDBName);
-            var thisEntry = {"guid":generateUUID(),"date":"20200308","weight":"169.6","units":"lb"};
+            // var thisEntry = {"guid":generateUUID(),"date":"20200308","weight":"169.6","units":"lb"};
             console.log(thisEntry);
             weightStore.add(thisEntry);
         
