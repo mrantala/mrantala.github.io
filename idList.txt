@@ -1,0 +1,7 @@
+#datepicker Textline that has a date in it.
+#inputWeight textbox that weight goes into 
+#addRecord Button to add an entry into database
+#lbUnits radio button to select lbs
+#kgUnits radio button to select kg 
+#statusMessage Place for a message
+#weightTable The weight table

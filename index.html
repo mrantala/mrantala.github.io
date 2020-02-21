@@ -71,7 +71,7 @@
         <li class="blugold-nav" data-blugoldpage="0"><a href="#"><i class="fa fa-table text-red"></i> <span>Data</span></a></li>
         <li class="blugold-nav" data-blugoldpage="1"><a href="#"><i class="fa fa-calculator text-yellow"></i> <span>Report</span></a></li>
         <li class="blugold-nav" data-blugoldpage="2"><a href="#"><i class="fa fa-area-chart text-aqua"></i> <span>Chart</span></a></li>
-        <li class="blugold-nav" data-blugoldpage="3"><a href="#"><i class="fa fa-cog text-white"></i> <span>Settings</span></a></li>
+        <!-- <li class="blugold-nav" data-blugoldpage="3"><a href="#"><i class="fa fa-cog text-white"></i> <span>Settings</span></a></li> -->
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -90,6 +90,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="blugold-page" data-blugoldpage="0">
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="box box-primary box-solid">
@@ -106,7 +107,8 @@
                             <!-- form start -->
                             <form role="form">
                                 <!-- .form-group datepicker -->
-                                <div class="form-group col-xs-5">
+                                <div class="form-group col-xs-6">
+                                    <label for="datepicker" class="custom-control-label">Date</label>
                                     <div class="input-group date"> <!-- has-error -->
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
@@ -116,9 +118,10 @@
                                 </div> <!-- /.form-group -->
                                 
                                 <!-- .form-group addRecord -->
-                                <div class="form-group col-xs-4">
+                                <div class="form-group col-xs-6">
+                                    <label for="inputWeight" class="custom-control-label">Weight</label>
                                     <div class="input-group"><!--  has-error -->
-                                    <input type="text" class="form-control" id="inputWarning" placeholder="0.0">  <!--  is-error -->
+                                    <input type="text" class="form-control" id="inputWeight" placeholder="0.0">  <!--  is-error -->
                                         <div class="input-group-btn">
                                             <button type="button" class="btn btn-danger" id="addRecord" >Add</button><!--  btn-danger btn-success btn-warning?-->
                                         </div>
@@ -126,16 +129,16 @@
                                 </div><!-- /.form-group -->
                                 
                                 <!-- .form-group lbUnits/kgUnits-->
-                                <span class="form-group col-xs-3"><!--  has-error -->
-                                    <span class="custom-control custom-radio ">
-                                        <input class="custom-control-input select" type="radio" id="lbUnits" name="customRadio" checked>
-                                        <label for="customRadio1" class="custom-control-label">lb</label>
-                                    </span>
-                                    <span class="custom-control custom-radio">
-                                        <input class="custom-control-input" type="radio" id="kgUnits" name="customRadio">
-                                        <label for="customRadio2" class="custom-control-label">kg</label>
-                                    </span>
-                                </span><!-- /.form-group -->
+                                <!-- <span class="form-group col-xs-3"><!--  has-error --> 
+                                    <!-- <span class="custom-control custom-radio "> -->
+                                        <!-- <input class="custom-control-input select" type="radio" id="lbUnits" name="customRadio" checked> -->
+                                        <!-- <label for="customRadio1" class="custom-control-label">lb</label> -->
+                                    <!-- </span> -->
+                                    <!-- <span class="custom-control custom-radio"> -->
+                                        <!-- <input class="custom-control-input" type="radio" id="kgUnits" name="customRadio"> -->
+                                        <!-- <label for="customRadio2" class="custom-control-label">kg</label> -->
+                                    <!-- </span> -->
+                                <!-- </span><!-- /.form-group -->
                                 
                                 <!-- .form-group statusMessage-->
                                 <div class="form-group col-xs-12 has-error"><!--  has-error -->
@@ -162,7 +165,7 @@
                         <div class="box-body">
                             <!-- table start -->
 
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="weightTable" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>Rendering engine</th>
@@ -597,6 +600,49 @@
                     </div>
                 </div>
             </div> <!-- row -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box box-solid">
+                        <!-- .box-header -->
+                        <div class="box-header with-border">
+                          <h3 class="box-title">Settings</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                            </div>
+                        </div> <!-- /.box-header -->
+
+                        <!-- .box-body -->
+                        <div class="box-body">
+                            <form role="form">
+                                
+                                <!-- .form-group datepicker -->
+                                <div class="form-group col-xs-5">
+                                    <label for="goalWeight" class="custom-control-label">Goal Weight</label>
+                                    <div class="input-group"> <!-- has-error -->
+                                        <input type="text" class="form-control" id="goalWeight">
+                                    </div>
+                                </div> <!-- /.form-group -->
+                                
+                                <!-- .form-group lbUnits/kgUnits -->
+                                <span class="form-group col-xs-3"><!--  has-error -->
+                                    <label for="lbUnits" class="custom-control-label">Units</label>
+                                    <div class="input-group"> <!-- has-error -->
+                                        <span class="custom-control custom-radio ">
+                                            <input class="custom-control-input select" type="radio" id="lbUnits" name="customRadio" checked>
+                                            <label for="customRadio1" class="custom-control-label">lb</label>
+                                        </span>
+                                        <span class="custom-control custom-radio">
+                                            <input class="custom-control-input" type="radio" id="kgUnits" name="customRadio">
+                                            <label for="customRadio2" class="custom-control-label">kg</label>
+                                        </span>
+                                    </div>
+                                <!-- <!-- </span><!-- /.form-group -->
+                            </form>
+                        </div><!-- /.box-body -->
+                    </div>
+                </div>
+            </div> <!-- row -->
             
         </div>
         
@@ -608,9 +654,9 @@
         Chart
         </div>
 
-        <div class="blugold-page hide" data-blugoldpage="3">
-        Settings
-        </div>
+        <!-- <div class="blugold-page hide" data-blugoldpage="3"> -->
+        <!-- Settings -->
+        <!-- </div> -->
     </section>
     <!-- /.content -->
   </div>
