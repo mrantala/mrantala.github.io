@@ -1,9 +1,9 @@
 {
-  "name": "WwW 0.0.0",
-  "short_name": "WwW",
+  "name": "WwW 0.0.0b",
+  "short_name": "WwWa",
   "start_url": "index.html",
   "display": "fullscreen",
-  "description": "Making a PWA",
+  "description": "Making a PWAa",
   "background_color": "#3c8dbc",
   "theme_color": "#367fa9",
   "orientation": "portrait-primary",
