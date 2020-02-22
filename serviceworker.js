@@ -1,4 +1,4 @@
-const CACHE_NAME = "WwW_0.0.0c";
+const CACHE_NAME = "WwW_0.0.0z";
 console.log(CACHE_NAME);
 const assets = [
   "/",
@@ -52,7 +52,7 @@ function clearOldCaches(){
 self.addEventListener('fetch', function(event) {console.log("fetch");
     var requestURL = new URL(event.request.url);
     
-    if (request.pathname === "/data.csv") {
+    if (requestURL.pathname === "/data.csv") {
         console.log("data.csv")
     } else {
         event.respondWith(
