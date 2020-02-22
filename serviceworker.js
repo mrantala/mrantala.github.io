@@ -1,4 +1,4 @@
-const CACHE_NAME = "WwW_0.0.0x";
+const CACHE_NAME = "WwW_0.0.0J";
 console.log(CACHE_NAME);
 const assets = [
   "/",
@@ -53,7 +53,11 @@ self.addEventListener('fetch', function(event) {console.log("fetch");
     var requestURL = new URL(event.request.url);
     
     if (requestURL.pathname === "/data.csv") {
-        console.log("data.csv")
+      event.respondWith(
+          new Response("<h1>Hello!</h1>", {
+            headers: {'Content-Type': 'text/html'}
+          })
+       )
     } else {
         event.respondWith(
             caches.match(event.request)

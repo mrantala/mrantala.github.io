@@ -33,7 +33,7 @@ function createDB(){
 }
 
 $("#downloadButton").on('click',function(e){
-    window.open( "https://www.fool.com", "_blank");
+    window.open( "/data.csv", "_blank");
 });
 
     $('#datepicker').datepicker({
