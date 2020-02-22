@@ -1,4 +1,4 @@
-const CACHE_NAME = "WwW_0.0.0d";
+const CACHE_NAME = "WwW_0.0.0e";
 console.log(CACHE_NAME);
 const assets = [
   "/",
@@ -22,7 +22,7 @@ const assets = [
   "lib/datatables.net/js/jquery.dataTables.min.js",
 ]
 
-self.addEventListener("install", installEvent => {
+self.addEventListener("install", installEvent => {console.log("install");
   installEvent.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       // cache.addAll(assets);
@@ -49,7 +49,7 @@ function clearOldCaches(){
     });
 }
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', function(event) {console.log("fetch");
     event.respondWith(
         caches.match(event.request)
             .then(function(response) {
@@ -61,13 +61,13 @@ self.addEventListener('fetch', function(event) {
     )
 });
 
-self.addEventListener('message', function (event) {
-  if (event.data.action === 'skipWaiting') {
-    self.skipWaiting();
-  }
-});
+// self.addEventListener('message', function (event) {
+  // if (event.data.action === 'skipWaiting') {
+    // self.skipWaiting();
+  // }
+// });
 
-self.addEventListener("activate", function(event) {
+self.addEventListener("activate", function(event) {console.log("activate");
     event.waitUntil(
         caches.keys().then(function(cacheNames){
             return Promise.all(
