@@ -1,5 +1,5 @@
-const cacheName = "WwW_0.0.4b";
-console.log(cacheName);
+const CACHE_NAME = "WwW_0.0.0a";
+console.log(CACHE_NAME);
 const assets = [
   "/",
   "/index.html",
@@ -24,7 +24,7 @@ const assets = [
 
 self.addEventListener("install", installEvent => {
   installEvent.waitUntil(
-    caches.open(cacheName).then(cache => {
+    caches.open(CACHE_NAME).then(cache => {
       // cache.addAll(assets);
       assets.forEach(myFunction);
       
@@ -41,7 +41,7 @@ function clearOldCaches(){
       keylist.forEach(myFunction);
 
         function myFunction(item, index) {
-          if (item != cacheName){
+          if (item != CACHE_NAME){
             // caches.delete(item);
             console.log("Delete: "+item);
           }
@@ -67,4 +67,18 @@ self.addEventListener('message', function (event) {
   }
 });
 
-clearOldCaches();
+self.addEventListener("activate", function(event) {
+    event.waitUntil(
+        caches.keys().then(function(cacheNames){
+            return Promise.all(
+                cacheNames.map(function(cacheName){
+                    if (CACHE_NAME !== cacheName && cacheName.startsWith("WwW")){
+                        return caches.delete(cacheName);
+                    }
+                }
+            )
+        }
+    )
+})
+
+// clearOldCaches();
