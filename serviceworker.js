@@ -75,10 +75,10 @@ self.addEventListener("activate", function(event) {
                     if (CACHE_NAME !== cacheName && cacheName.startsWith("WwW")){
                         return caches.delete(cacheName);
                     }
-                }
+                })
             )
-        }
+        })
     )
-})
+});
 
 // clearOldCaches();
