@@ -1,4 +1,4 @@
-const CACHE_NAME = "WwW_0.0.0a";
+const CACHE_NAME = "WwW_0.0.0b";
 console.log(CACHE_NAME);
 const assets = [
   "/",
@@ -50,15 +50,21 @@ function clearOldCaches(){
 }
 
 self.addEventListener('fetch', function(event) {console.log("fetch");
-    event.respondWith(
-        caches.match(event.request)
-            .then(function(response) {
-                if (response) {
-                    return response;
-                }
-                return fetch(event.request);
-            })
-    )
+    var requestURL = new URL(event.request.url);
+    
+    if (request.pathname === "/data.csv") {
+        console.log("data.csv")
+    } else {
+        event.respondWith(
+            caches.match(event.request)
+                .then(function(response) {
+                    if (response) {
+                        return response;
+                    }
+                    return fetch(event.request);
+                })
+        )
+    }
 });
 
 // self.addEventListener('message', function (event) {
