@@ -30,6 +30,8 @@ function createDB(){
             weightsStore.createIndex("weight_idx", "weight", {unique: false});
         }
     }
+    
+    addFakeData();
 }
 
 $("#downloadButton").on('click',function(e){
@@ -47,22 +49,22 @@ $("#addRecord").on('click', function (event){
     var dbOpenRequest = window.indexedDB.open(dbName,1);
     
     dbOpenRequest.onsuccess = function(event) {
-            var db = event.target.result;
-            var transaction = db.transaction("weights","readwrite");
-            var weightStore = transaction.objectStore(weightsDBName);
-            var theWeight = $("#inputWeight")[0].value;
-            var theUnits = "unk";
-            if ($("#lbUnits")[0].checked === true){
-                theUnits = "lb";
-            } else {
-                if ($("#kgUnits")[0].checked === true){
-                    theUnits = "kg";
-                }
+        var db = event.target.result;
+        var transaction = db.transaction("weights","readwrite");
+        var weightStore = transaction.objectStore(weightsDBName);
+        var theWeight = $("#inputWeight")[0].value;
+        var theUnits = "unk";
+        if ($("#lbUnits")[0].checked === true){
+            theUnits = "lb";
+        } else {
+            if ($("#kgUnits")[0].checked === true){
+                theUnits = "kg";
             }
-            var theDate = $("#datepicker")[0].value; 
-            var thisEntry = {"guid":generateUUID(),"date":theDate,"weight":theWeight,"units":theUnits};
-            weightStore.add(thisEntry);
-        
+        }
+        var theDate = $("#datepicker")[0].value; 
+        var thisEntry = {"guid":generateUUID(),"date":theDate,"weight":theWeight,"units":theUnits};
+        weightStore.add(thisEntry);
+        addFakeData();
     }
 });
 
@@ -80,6 +82,25 @@ function generateUUID() { // Public Domain/MIT
         }
         return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
+}
+
+function addFakeData (){
+    var dbOpenRequest = window.indexedDB.open(dbName,1);
+    
+    dbOpenRequest.onsuccess = function(event) {
+            var db = event.target.result;
+            var transaction = db.transaction("weights","readwrite");
+            var weightStore = transaction.objectStore(weightsDBName);
+            var thisEntry = {"guid":generateUUID(),"date":"03/08/1970","weight":170.2,"units":"lb"};
+            weightStore.add(thisEntry);
+                        var thisEntry = {"guid":generateUUID(),"date":"03/08/1970","weight":170.4,"units":"lb"};
+            weightStore.add(thisEntry);
+                        var thisEntry = {"guid":generateUUID(),"date":"03/08/1970","weight":170.5,"units":"lb"};
+            weightStore.add(thisEntry);
+                        var thisEntry = {"guid":generateUUID(),"date":"03/08/1970","weight":170.3,"units":"lb"};
+            weightStore.add(thisEntry);
+        
+    }
 }
 
 createDB();

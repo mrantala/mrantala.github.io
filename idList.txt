@@ -5,3 +5,5 @@
 #kgUnits radio button to select kg 
 #statusMessage Place for a message
 #weightTable The weight table
+#versionString
+#downloadButton
