@@ -1,4 +1,6 @@
-const CACHE_NAME = "WwW_0.0.0c";
+const CACHE_NAME = "WwW_0.0.0h";
+importScripts('/app/js/common.js');
+
 console.log(CACHE_NAME);
 const assets = [
   "/",
@@ -49,13 +51,15 @@ function clearOldCaches(){
     });
 }
 
+//{'Content-Type': 'text/html'}
 self.addEventListener('fetch', function(event) {console.log("fetch");
     var requestURL = new URL(event.request.url);
     
     if (requestURL.pathname === "/data.csv") {
       event.respondWith(
-          new Response("<h1>Hello!</h1>", {
-            headers: {'Content-Type': 'text/html'}
+          new Response(makeCSV(), {
+            headers: {'Content-Type': 'application/csv',
+            "Content-Disposition":"attachment; filename="+"wWw_Data.csv"}
           })
        )
     } else {
