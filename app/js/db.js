@@ -4,7 +4,7 @@ var dbVersion = 1;
 var settingsDBName = "settings";
 var weightsDBName = "weights";
 var theTable = {};
-function readWeightData(){
+function readWeightData(){console.log("readWeightData");
     var dbOpenRequest = self.indexedDB.open(dbName,1);
     
     dbOpenRequest.onsuccess = function(event) {

@@ -16,3 +16,4 @@ $("#addRecord").on('click', function (event){
     addRecord(event);
 });
 
+var theTable = readWeightData();
