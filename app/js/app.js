@@ -4,35 +4,7 @@ var dbVersion = 1;
 var settingsDBName = "settings";
 var weightsDBName = "weights";
 
-function createDB(){
-    var request = window.indexedDB.open(dbName,dbVersion);
-    
-    request.onerror = function(e){
-        console.log("Daabase error: ",event.target.error);
-    }
-    
-    request.onsuccess = function(event) {
-        var db = event.target.result;
-        console.log("Database: ",db);
-        console.log("Object store names: ",db.objectStoreNames);
-    }
-    
-    request.onupgradeneeded = function(event) {
-        var db = event.target.result;
-        if (!db.objectStoreNames.contains(settingsDBName)) {
-            db.createObjectStore(settingsDBName, {keyPath: "setting"});
-        }
-        
-        if (!db.objectStoreNames.contains(weightsDBName)) {
-            var weightsStore = db.createObjectStore(weightsDBName, {keyPath: "guid"});
-            
-            weightsStore.createIndex("date_idx", "date", {unique: false});
-            weightsStore.createIndex("weight_idx", "weight", {unique: false});
-        }
-    }
-    
-    addFakeData();
-}
+
 
 $("#downloadButton").on('click',function(e){
     window.open( "/data.csv", "_blank");
@@ -68,4 +40,3 @@ $("#addRecord").on('click', function (event){
     }
 });
 
-createDB();

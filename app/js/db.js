@@ -39,6 +39,7 @@ function generateUUID() { // Public Domain/MIT
 }
 
 function addFakeData (){
+    console.log("addFakeData");
     var dbOpenRequest = window.indexedDB.open(dbName,1);
     
     dbOpenRequest.onsuccess = function(event) {
@@ -57,6 +58,36 @@ function addFakeData (){
     }
 }
 
+function createDB(){
+    var request = window.indexedDB.open(dbName,dbVersion);
+    
+    request.onerror = function(e){
+        console.log("Daabase error: ",event.target.error);
+    }
+    
+    request.onsuccess = function(event) {
+        var db = event.target.result;
+        console.log("Database: ",db);
+        console.log("Object store names: ",db.objectStoreNames);
+    }
+    
+    request.onupgradeneeded = function(event) {
+        var db = event.target.result;
+        if (!db.objectStoreNames.contains(settingsDBName)) {
+            db.createObjectStore(settingsDBName, {keyPath: "setting"});
+        }
+        
+        if (!db.objectStoreNames.contains(weightsDBName)) {
+            var weightsStore = db.createObjectStore(weightsDBName, {keyPath: "guid"});
+            
+            weightsStore.createIndex("date_idx", "date", {unique: false});
+            weightsStore.createIndex("weight_idx", "weight", {unique: false});
+        }
+    }
+    
+    addFakeData();
+}
+
 function makeCSV(){
     var theCSV = "";
     theCSV+="Name,Data,Lover"+"\n";
@@ -65,3 +96,5 @@ function makeCSV(){
     var theTable = readWeightData();
     return theCSV;
 }
+
+createDB();

@@ -1,4 +1,4 @@
-const CACHE_NAME = "WwW_0.0.0n";
+const CACHE_NAME = "WwW_0.0.0o";
 importScripts('/app/js/db.js');
 
 console.log(CACHE_NAME);
@@ -53,7 +53,7 @@ function clearOldCaches(){
 }
 
 //{'Content-Type': 'text/html'}
-self.addEventListener('fetch', function(event) {console.log("fetch");
+self.addEventListener('fetch', function(event) {
     var requestURL = new URL(event.request.url);
     
     if (requestURL.pathname === "/data.csv") {
