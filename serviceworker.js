@@ -1,4 +1,4 @@
-const CACHE_NAME = "WwW_0.0.0e";
+const CACHE_NAME = "WwW_0.0.0f";
 importScripts('/app/js/db.js');
 
 console.log(CACHE_NAME);

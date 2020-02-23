@@ -16,7 +16,7 @@ $("#addRecord").on('click', function (event){
     addRecord(event);
 });
 
-var theTable = readWeightData();
+// var theTable = readWeightData();
 
 
 
@@ -133,7 +133,7 @@ function createDB(){
     }
     
     addFakeData();
-    readWeightData();
+    // readWeightData();
 }
 
 createDB();
