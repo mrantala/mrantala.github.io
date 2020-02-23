@@ -1,4 +1,4 @@
-const CACHE_NAME = "WwW_0.0.0h";
+const CACHE_NAME = "WwW_0.0.0m";
 importScripts('/app/js/common.js');
 
 console.log(CACHE_NAME);
@@ -9,6 +9,7 @@ const assets = [
   "app/js/app.js",
   "app/js/blugold.js",
   "app/js/pwa.js",
+  "app/js/common.js",  
   "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700",
   "lib/bootstrap/js/bootstrap.min.js",
   "lib/bootstrap-datepicker/css/bootstrap-datepicker.min.css",
