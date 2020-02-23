@@ -27,7 +27,7 @@ var settingsDBName = "settings";
 var weightsDBName = "weights";
 var theTable = {};
 function readWeightData(){console.log("readWeightData");
-    var dbOpenRequest = self.indexedDB.open(dbName,1);
+    var dbOpenRequest = window.indexedDB.open(dbName,dbVersion);
     
     dbOpenRequest.onsuccess = function(event) {
             var db = event.target.result;
@@ -64,7 +64,7 @@ function generateUUID() { // Public Domain/MIT
     });
 }
 function addRecord(event){
-        var dbOpenRequest = self.indexedDB.open(dbName,1);
+        var dbOpenRequest = window.indexedDB.open(dbName,1);
     
     dbOpenRequest.onsuccess = function(event) {
         var db = event.target.result;
@@ -87,7 +87,7 @@ function addRecord(event){
 }
 function addFakeData (){
     console.log("addFakeData");
-    var dbOpenRequest = self.indexedDB.open(dbName,1);
+    var dbOpenRequest = window.indexedDB.open(dbName,1);
     
     dbOpenRequest.onsuccess = function(event) {
             var db = event.target.result;
@@ -106,7 +106,7 @@ function addFakeData (){
 }
 
 function createDB(){
-    var request = self.indexedDB.open(dbName,dbVersion);
+    var request = window.indexedDB.open(dbName,dbVersion);
     
     request.onerror = function(e){
         console.log("Daabase error: ",event.target.error);
