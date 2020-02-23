@@ -9,7 +9,7 @@ function readWeightData(){console.log("readWeightData");
     
     dbOpenRequest.onsuccess = function(event) {
             var db = event.target.result;
-            var transaction = db.transaction("weights","read");
+            var transaction = db.transaction("weights");
             var weightStore = transaction.objectStore(weightsDBName);
             var weightCursor = weightStore.openCursor();
             
