@@ -40,7 +40,7 @@ function readWeightData(){console.log("readWeightData");
                 
                 if (!cursor){return;}
                 console.log(cursor.value);
-                theTable.push(cursor.value);
+                theTable[theTable.length] = cursor.value;
                 cursor.continue();
             }
         
