@@ -4,8 +4,6 @@ var dbVersion = 1;
 var settingsDBName = "settings";
 var weightsDBName = "weights";
 
-
-
 $("#downloadButton").on('click',function(e){
     window.open( "/data.csv", "_blank");
 });

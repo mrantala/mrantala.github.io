@@ -1,7 +1,7 @@
 console.log("db.js");
 var theTable = {};
 function readWeightData(){
-    var dbOpenRequest = window.indexedDB.open(dbName,1);
+    var dbOpenRequest = self.indexedDB.open(dbName,1);
     
     dbOpenRequest.onsuccess = function(event) {
             var db = event.target.result;
@@ -40,7 +40,7 @@ function generateUUID() { // Public Domain/MIT
 
 function addFakeData (){
     console.log("addFakeData");
-    var dbOpenRequest = window.indexedDB.open(dbName,1);
+    var dbOpenRequest = self.indexedDB.open(dbName,1);
     
     dbOpenRequest.onsuccess = function(event) {
             var db = event.target.result;
@@ -59,7 +59,7 @@ function addFakeData (){
 }
 
 function createDB(){
-    var request = window.indexedDB.open(dbName,dbVersion);
+    var request = self.indexedDB.open(dbName,dbVersion);
     
     request.onerror = function(e){
         console.log("Daabase error: ",event.target.error);
