@@ -25,22 +25,28 @@ var dbName = "www_weights";
 var dbVersion = 1;
 var settingsDBName = "settings";
 var weightsDBName = "weights";
-var theTable = {};
+theTable = {};
+tableKeyCode = [];
+//0.45359237kg = 1lb
 function readWeightData(){console.log("readWeightData");
     var dbOpenRequest = window.indexedDB.open(dbName,dbVersion);
-    
+    theTable = {};
+    tableKeyCode = [];
     dbOpenRequest.onsuccess = function(event) {
             var db = event.target.result;
             var transaction = db.transaction("weights");
             var weightStore = transaction.objectStore(weightsDBName);
             var weightCursor = weightStore.openCursor();
             
-            weightCursor.onsuccess = function(e){
+            weightCursor.onsuccess = function(event){
                 var cursor = event.target.result;
                 
                 if (!cursor){return;}
                 console.log(cursor.value);
-                theTable[theTable.length] = cursor.value;
+                theTable[tableKeyCode.length] = cursor.value;
+                tableKeyCode.push(cursor.value);
+                console.log(theTable);
+                console.log(tableKeyCode);
                 cursor.continue();
             }
         
@@ -83,6 +89,7 @@ function addRecord(event){
         var thisEntry = {"guid":generateUUID(),"date":theDate,"weight":theWeight,"units":theUnits};
         weightStore.add(thisEntry);
         addFakeData();
+        console.log(readWeightData());
     }
 }
 function addFakeData (){
