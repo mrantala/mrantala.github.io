@@ -6,7 +6,7 @@ function makeCSV(){
     theCSV+="Name,Data,Lover"+"\n";
     theCSV+="Matt,Yes,Carrie"+"\n";
     theCSV+="A,B,C"+"\n";
-    var theTable = readWeightData();
+    // var theTable = readWeightData();
     return theCSV;
 }
 
