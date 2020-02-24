@@ -2,6 +2,9 @@ console.log("app.js");
 
 
 $("#downloadButton").on('click',function(e){
+            z = readWeightData();
+        console.log(z);
+        www(z)
     window.open( "/data.csv", "_blank");
 });
 
@@ -17,9 +20,6 @@ $("#addRecord").on('click', function (event){
 });
 
 // var theTable = readWeightData();
-
-
-
 
 var dbName = "www_weights";
 var dbVersion = 1;
@@ -42,15 +42,16 @@ function readWeightData(){console.log("readWeightData");
                 var cursor = event.target.result;
                 
                 if (!cursor){return;}
-                console.log(cursor.value);
+                // console.log(cursor.value);
                 theTable[tableKeyCode.length] = cursor.value;
                 tableKeyCode.push(cursor.value);
-                console.log(theTable);
-                console.log(tableKeyCode);
+                // console.log(theTable);
+                // console.log(tableKeyCode);
                 cursor.continue();
             }
         
     }
+    www(theTable);
     return theTable;
 }
 
@@ -71,7 +72,7 @@ function generateUUID() { // Public Domain/MIT
 }
 function addRecord(event){
         var dbOpenRequest = window.indexedDB.open(dbName,1);
-    
+    //stateToServiceWorker("matt!!");
     dbOpenRequest.onsuccess = function(event) {
         var db = event.target.result;
         var transaction = db.transaction("weights","readwrite");
@@ -89,9 +90,35 @@ function addRecord(event){
         var thisEntry = {"guid":generateUUID(),"date":theDate,"weight":theWeight,"units":theUnits};
         weightStore.add(thisEntry);
         addFakeData();
-        console.log(readWeightData());
+        //z = readWeightData();
+        // console.log(z);
+        // www(z);
     }
 }
+
+function www(dd){
+    console.log(dd);
+    var theString = "";
+
+    const keys  = Object.keys(dd)
+    console.log(keys )
+for (const key of keys ) {
+  console.log(key);
+  tempTable = dd[key];
+          thisLine = "\n"+tempTable["guid"]+","+tempTable["date"]+","+tempTable["weight"]+","+tempTable["units"];
+        theString+=thisLine;console.log(theString);
+}
+/*     for (var property in dd) {console.log(property);
+      if (dd.hasOwnProperty(property)) {
+        tempTable = dd[property];console.log(tempTable);
+        thisLine = "\n"+tempTable["guid"]+","+tempTable["date"]+","+tempTable["weight"]+","+tempTable["units"];
+        theString+=thisLine;console.log(theString);
+      }
+    } */
+    console.log(theString);
+    stateToServiceWorker2(theString);
+}
+
 function addFakeData (){
     console.log("addFakeData");
     var dbOpenRequest = window.indexedDB.open(dbName,1);

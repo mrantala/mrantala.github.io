@@ -1,5 +1,6 @@
-const CACHE_NAME = "WwW_0.0.0j";
+const CACHE_NAME = "WwW_0.0.0zzzz5";
 importScripts('/app/js/db.js');
+swTable = "";
 
 console.log(CACHE_NAME);
 const assets = [
@@ -39,7 +40,7 @@ self.addEventListener("install", installEvent => {console.log("install");
   )
 });
 
-function clearOldCaches(){
+/* function clearOldCaches(){
     caches.keys().then(keylist => {
       keylist.forEach(myFunction);
 
@@ -50,13 +51,16 @@ function clearOldCaches(){
           }
         }
     });
-}
+} */
 
 //{'Content-Type': 'text/html'}
 self.addEventListener('fetch', function(event) {
     var requestURL = new URL(event.request.url);
     
     if (requestURL.pathname === "/data.csv") {
+        console.log("Boom!");
+        console.log(swTable);
+        console.log(theTable);
       event.respondWith(
           new Response(makeCSV(), {
             headers: {'Content-Type': 'application/csv',
@@ -82,6 +86,27 @@ self.addEventListener('fetch', function(event) {
   // }
 // });
 
+/* // Here we add the event listener for receiving messages
+self.addEventListener('message', function(event){
+    console.log("I hear you!");
+    console.log(event.data);
+}); */
+
+self.addEventListener('message', function(event){
+    // Receive the data from the client
+    var data = event.data;
+    console.log("I hear you");
+    console.log(event);
+    console.log(event.data);
+    swTable =data;
+    console.log(swTable);
+    // The unique ID of the tab
+    var clientId = event.source.id 
+
+    // A function that handles the message
+    self.syncTabState(data, clientId);
+});
+
 self.addEventListener("activate", function(event) {console.log("activate");
     event.waitUntil(
         caches.keys().then(function(cacheNames){
@@ -95,5 +120,21 @@ self.addEventListener("activate", function(event) {console.log("activate");
         })
     )
 });
+
+self.syncTabState = function(data, clientId){
+    clients.matchAll().then(function(clients) {
+
+        // Loop over all available clients
+        clients.forEach(function(client) {
+
+            // No need to update the tab that 
+            // sent the data
+            if (client.id !== clientId) {
+                self.sendTabState(client, data)
+            }
+           
+        })
+    })
+}
 
 // clearOldCaches();
