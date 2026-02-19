@@ -152,6 +152,67 @@ export function initEntries() {
       list.appendChild(li);
     });
   }
+  
+  // --- CSV IMPORT ---
+	const importBtn = document.getElementById("import-btn");
+	const importFile = document.getElementById("import-file");
+
+	importBtn.addEventListener("click", () => importFile.click());
+
+	importFile.addEventListener("change", () => {
+	  const file = importFile.files[0];
+	  if (!file) return;
+
+	  const reader = new FileReader();
+
+	  reader.onload = e => {
+		const text = e.target.result;
+		const rows = text.split(/\r?\n/).filter(r => r.trim() !== "");
+
+		// Expect header row: id,date,weight,comments
+		const [header, ...dataRows] = rows;
+		const cols = header.split(",");
+
+		if (cols.length < 4) {
+		  alert("Invalid CSV format. Expected: id,date,weight,comments");
+		  return;
+		}
+
+		const imported = dataRows.map(row => {
+		  const parts = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || [];
+
+		  const [id, date, weight, comments] = parts.map(v =>
+			v.replace(/^"|"$/g, "").replace(/""/g, '"')
+		  );
+
+		  return {
+			id: Number(id),
+			date,
+			weight: Number(weight),
+			comments: comments || ""
+		  };
+		});
+
+		// Basic validation
+		const invalid = imported.some(e =>
+		  !e.id || !e.date || isNaN(e.weight)
+		);
+
+		if (invalid) {
+		  alert("CSV contains invalid rows. Import cancelled.");
+		  return;
+		}
+
+		// Replace all entries
+		entries = imported;
+		storage.saveEntries(entries);
+		renderList();
+
+		alert("Import successful!");
+	  };
+
+	  reader.readAsText(file);
+	});
 
   renderList();
 }
