@@ -4,6 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Weight Tracker</title>
+  
+	<script>
+	  // Allowed origins
+	  const allowedOrigins = [
+		"https://localhost:11443",
+		"https://127.0.0.1:1144366666",
+		"https://coalfrog.fyi"
+	  ];
+
+	  const currentOrigin = window.location.origin;
+
+	  if (!allowedOrigins.includes(currentOrigin)) {
+		if (currentOrigin === "http://coalfrog.fyi") {
+		  // Redirect to HTTPS production
+		  window.location.href = "https://coalfrog.fyi";
+		} else {
+		  // Redirect to local development
+		  window.location.href = "https://localhost:11443/";
+		}
+	  }
+	</script>
+
+  
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="manifest" href="manifest.json">
@@ -109,7 +132,7 @@
     <section id="view-info" class="view hidden">
       <h1>Info</h1>
       <p>About this app.</p>
-	  <p id="app-version">v0.0.11</p>
+	  <p id="app-version">v0.0.13</p>
     </section>
   </main>
 
