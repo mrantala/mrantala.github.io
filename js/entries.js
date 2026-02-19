@@ -28,6 +28,8 @@ export function initEntries() {
   const list = document.getElementById("entry-list");
   
   let entries = storage.loadEntries() || [];
+  document.getElementById("export-btn").addEventListener("click", () => exportCSV(entries));
+
   //renderEntries(entries);
   
   const cancelBtn = document.getElementById("cancel-edit-btn");
@@ -41,6 +43,14 @@ export function initEntries() {
     .toISOString()
     .slice(0, 10);
 
+  function getMostRecentEntry() {
+	if (entries.length === 0) return null;
+
+	  return entries
+		.slice()
+		.sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+  }
+
   form.addEventListener("submit", e => {
     e.preventDefault();
 
@@ -50,6 +60,29 @@ export function initEntries() {
 
     if (!date || !weight) return;
 
+	//Resonableness check
+	const previous = getMostRecentEntry();
+
+	if (previous) {
+	  const diff = Math.abs(weight - previous.weight);
+	  const pct = diff / previous.weight;
+
+	  const tooBig =
+		diff > 10 || pct > 0.08;
+
+	  if (tooBig) {
+		const ok = confirm(
+		  `This entry differs from your last weight by ${diff.toFixed(
+			1
+		  )} lbs (${(pct * 100).toFixed(
+			1
+		  )}%). Do you want to save it anyway?`
+		);
+
+		if (!ok) return; // user cancelled
+	  }
+	}
+	
     if (editingId) {
       const entry = entries.find(e => e.id === editingId);
       entry.date = date;
@@ -121,4 +154,39 @@ export function initEntries() {
   }
 
   renderList();
+}
+
+
+function exportCSV(entries) {console.log("Hello");
+  const sorted = entries
+    .slice()
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+  // Build CSV header + rows
+  const rows = [
+    ["id", "date", "weight", "comments"],
+    ...sorted.map(e => [
+      e.id,
+      e.date,
+      e.weight,
+      (e.comments || "").replace(/\n/g, " ") // remove newlines
+    ])
+  ];
+
+  // Convert to CSV string
+  const csv = rows.map(r =>
+    r.map(field => `"${String(field).replace(/"/g, '""')}"`).join(",")
+  ).join("\n");
+
+  // Create downloadable file
+  const blob = new Blob([csv], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  const today = new Date().toISOString().slice(0, 10);
+  a.href = url;
+  a.download = `entries-${today}.csv`;
+  a.click();
+
+  URL.revokeObjectURL(url);
 }
