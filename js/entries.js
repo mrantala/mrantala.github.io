@@ -1,13 +1,40 @@
 import { storage } from "./storage.js";
 
-let entries = storage.loadEntries();
-let editingId = null;
+//let entries = storage.loadEntries();
+// let entries = storage.loadEntries().sort((a, b) => {
+  // return new Date(a.date) - new Date(b.date);
+// });
+
+//
+
+// function renderEntries(entries) {
+  // const list = document.getElementById("entry-list");
+  // list.innerHTML = "";
+
+  // const sorted = [...entries].sort((a, b) => {
+    // return new Date(a.date) - new Date(b.date);
+  // });
+
+  // sorted.forEach(entry => {
+    // const li = document.createElement("li");
+    // li.textContent = `${entry.date}: ${entry.weight}`;	
+    // list.appendChild(li);
+  // });
+// }
 
 export function initEntries() {
+  let editingId = null;
   const form = document.getElementById("entry-form");
   const list = document.getElementById("entry-list");
+  
+  let entries = storage.loadEntries() || [];
+  //renderEntries(entries);
+  
   const cancelBtn = document.getElementById("cancel-edit-btn");
   const editBanner = document.getElementById("edit-indicator");
+
+	const settings = storage.loadSettings();
+	document.getElementById("unit-label").textContent = settings.units || "lb";
 
   // Default date = today
   document.getElementById("entry-date").value = new Date()
@@ -59,38 +86,38 @@ export function initEntries() {
   }
 
   function renderList() {
-    list.innerHTML = "";
+  list.innerHTML = "";
 
-    entries
-      .slice()
-      .sort((a, b) => b.id - a.id)
-      .forEach(entry => {
-        const li = document.createElement("li");
-        li.textContent = `${entry.date} — ${entry.weight}`;
+  entries
+    .slice()
+    .sort((a, b) => new Date(a.date) - new Date(b.date))   // chronological
+    .forEach(entry => {
+      const li = document.createElement("li");
+      li.textContent = `${entry.date} — ${entry.weight}`;
 
-        const editBtn = document.createElement("button");
-        editBtn.textContent = "✏️";
-        editBtn.addEventListener("click", () => {
-          editingId = entry.id;
-          document.getElementById("entry-date").value = entry.date;
-          document.getElementById("entry-weight").value = entry.weight;
-          document.getElementById("entry-comments").value = entry.comments;
+      const editBtn = document.createElement("button");
+      editBtn.textContent = "✏️";
+      editBtn.addEventListener("click", () => {
+        editingId = entry.id;
+        document.getElementById("entry-date").value = entry.date;
+        document.getElementById("entry-weight").value = entry.weight;
+        document.getElementById("entry-comments").value = entry.comments;
 
-          editBanner.classList.remove("hidden");
-          cancelBtn.classList.remove("hidden");
-        });
-
-        const delBtn = document.createElement("button");
-        delBtn.textContent = "🗑️";
-        delBtn.addEventListener("click", () => {
-          entries = entries.filter(e => e.id !== entry.id);
-          storage.saveEntries(entries);
-          renderList();
-        });
-
-        li.append(" ", editBtn, " ", delBtn);
-        list.appendChild(li);
+        editBanner.classList.remove("hidden");
+        cancelBtn.classList.remove("hidden");
       });
+
+      const delBtn = document.createElement("button");
+      delBtn.textContent = "🗑️";
+      delBtn.addEventListener("click", () => {
+        entries = entries.filter(e => e.id !== entry.id);
+        storage.saveEntries(entries);
+        renderList();
+      });
+
+      li.append(" ", editBtn, " ", delBtn);
+      list.appendChild(li);
+    });
   }
 
   renderList();

@@ -1,4 +1,4 @@
-import { initRouter } from "./router.js";
+import { initRouter, showView } from "./router.js";
 import { initEntries } from "./entries.js";
 import { initSettings } from "./settings.js";
 
@@ -11,6 +11,9 @@ if ("serviceWorker" in navigator) {
     regs.forEach(reg => reg.unregister());
   });
 }
+
+//showView("view-entry");
+
 // if ("serviceWorker" in navigator) {
   // navigator.serviceWorker.register("./sw.js");
 // }
