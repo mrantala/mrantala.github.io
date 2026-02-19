@@ -8,7 +8,7 @@ let settings = {
 
 export function initSettings() {
   const form = document.getElementById("settings-form");
-  const exportBtn = document.getElementById("export-btn");
+  //const exportBtn = document.getElementById("export-btn");
   const importBtn = document.getElementById("import-btn");
   const importFile = document.getElementById("import-file");
 
@@ -35,7 +35,7 @@ export function initSettings() {
     alert("Settings saved");
   });
 
-  exportBtn.addEventListener("click", () => alert("Export not implemented yet"));
+  //Moved to Entries exportBtn.addEventListener("click", () => exportCSV());
   importBtn.addEventListener("click", () => importFile.click());
   importFile.addEventListener("change", () => alert("Import not implemented yet"));
 }
