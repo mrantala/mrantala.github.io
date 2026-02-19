@@ -30,7 +30,7 @@ The four buttons will relate to 4 views.
 4) Info page. Information about the app and the developer and the optoin to donate money
 
 
-I have three initial questions:
-1) Qhat libraries and tools do you recommend we use.
+My three initial questions:
+1) What libraries and tools do you recommend we use.
 2) I intend to do this step by step, what order should I implement the various functionality.
 3) What additonal information do you need to provide more information.

@@ -1,0 +1,42 @@
+/* Portrait: nav on top */
+body {
+  flex-direction: column;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid var(--border);
+  height: var(--nav-size);
+  align-items: center;
+}
+
+nav button.active {
+  border-bottom: 3px solid var(--accent);
+}
+
+main {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space);
+}
+
+/* Landscape: nav on left */
+@media (min-width: 700px) and (orientation: landscape) {
+  body {
+    flex-direction: row;
+  }
+
+  nav {
+    flex-direction: column;
+    width: var(--nav-size);
+    height: 100vh;
+    border-right: 1px solid var(--border);
+    border-bottom: none;
+  }
+
+  nav button.active {
+    border-bottom: none;
+    border-left: 3px solid var(--accent);
+  }
+}
