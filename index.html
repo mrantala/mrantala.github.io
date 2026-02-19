@@ -28,31 +28,39 @@
 
   <main>
     <!-- Data Entry View -->
-    <section id="view-entry" class="view">
-      <h1>Data Entry</h1>
+	<section id="view-entry" class="view">
+	  <h1>Data Entry</h1>
 
-      <form id="entry-form">
-        <label>
-          Date
-          <input type="date" id="entry-date" required />
-        </label>
+	  <form id="entry-form" novalidate>
+		<div class="form-group">
+		  <label for="entry-date">Date</label>
+		  <input type="date" id="entry-date" required />
+		</div>
 
-        <label>
-          Weight
-          <input type="number" id="entry-weight" step="0.1" required />
-        </label>
+		<div class="form-group">
+		  <label for="entry-weight">Weight</label>
+		  <input type="number" id="entry-weight" step="0.1" required />
+		  <small id="unit-label" class="hint">lb</small>
+		</div>
 
-        <label>
-          Comments
-          <textarea id="entry-comments"></textarea>
-        </label>
+		<div class="form-group">
+		  <label for="entry-comments">Comments</label>
+		  <textarea id="entry-comments" rows="3"></textarea>
+		</div>
 
-        <button type="submit">Save Entry</button>
-      </form>
+		<div id="edit-indicator" class="hidden edit-banner">
+		  Editing existing entry
+		</div>
 
-      <h2>Entries</h2>
-      <ul id="entry-list"></ul>
-    </section>
+		<div class="form-actions">
+		  <button type="submit" id="save-btn">Save</button>
+		  <button type="button" id="cancel-edit-btn" class="hidden">Cancel</button>
+		</div>
+	  </form>
+
+	  <h2>Entries</h2>
+	  <ul id="entry-list"></ul>
+	</section>
 
     <!-- Charts View -->
     <section id="view-charts" class="view hidden">
@@ -70,7 +78,7 @@
     <section id="view-info" class="view hidden">
       <h1>Info</h1>
       <p>About this app.</p>
-	  <p id="app-version">v0.0.1</p>
+	  <p id="app-version">v0.0.06</p>
     </section>
   </main>
 

@@ -44,3 +44,28 @@ button:focus-visible {
   text-align: center;
   margin-top: 2rem;
 }
+
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.hint {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.edit-banner {
+  background: #fffae6;
+  border-left: 4px solid #e0a800;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
