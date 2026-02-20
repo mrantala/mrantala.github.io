@@ -2,9 +2,13 @@ import { initRouter, showView } from "./router.js";
 import { initEntries } from "./entries.js";
 import { initSettings } from "./settings.js";
 
-initRouter();
-initEntries();
-initSettings();
+//Wait until DOM is loaded so that when I read the entries, storage is ready
+document.addEventListener("DOMContentLoaded", () => {
+  initRouter();
+  initEntries();
+  initSettings();
+});
+
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.getRegistrations().then(regs => {
