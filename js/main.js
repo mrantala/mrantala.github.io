@@ -12,6 +12,19 @@ if ("serviceWorker" in navigator) {
   });
 }
 
+window.addEventListener("orientationchange", () => {
+  // Force Safari to recalc layout
+  document.body.style.display = "none";
+  requestAnimationFrame(() => {
+    document.body.style.display = "";
+  });
+});
+
+//window.addEventListener("orientationchange", () => {
+  // setTimeout(() => {
+    // applyLayout();   // or whatever your layout function is called
+  // }, 50);
+// });
 //showView("view-entry");
 
 // if ("serviceWorker" in navigator) {
