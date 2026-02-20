@@ -141,6 +141,8 @@ export function initEntries() {
       });
 
       const delBtn = document.createElement("button");
+	  delBtn.type = "button";   // ← prevents form submission
+
       delBtn.textContent = "🗑️";
       delBtn.addEventListener("click", () => {
 		  const ok = confirm(`Delete entry from ${entry.date}?`);
