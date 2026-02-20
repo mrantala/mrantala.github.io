@@ -193,8 +193,33 @@ export function initEntries() {
 		  };
 		});
 
+		let validImportedRows = [];
+		for (let i = 0; i < imported.length; i++) {
+		  const e = imported[i];
+		  const rowNum = i + 2; // +2 because row 1 is header, row 2 is first data row
+
+			console.log(e);
+		  if (!e.id || isNaN(e.id)) {
+			alert(`Row ${rowNum}: Invalid ID value "${e.id}". Import cancelled.`);
+			continue;
+		  }
+
+		  if (!e.date || isNaN(Date.parse(e.date))) {
+			alert(`Row ${rowNum}: Invalid date value "${e.date}". Import cancelled.`);
+			continue;
+		  }
+
+		  if (isNaN(e.weight)) {
+			alert(`Row ${rowNum}: Invalid weight value "${e.weight}". Import cancelled.`);
+			continue;
+		  }
+		  
+		  validImportedRows.push(e)
+		}
+
+
 		// Basic validation
-		const invalid = imported.some(e =>
+		const invalid = validImportedRows.some(e =>
 		  !e.id || !e.date || isNaN(e.weight)
 		);
 
