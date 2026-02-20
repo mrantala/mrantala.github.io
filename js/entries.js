@@ -143,9 +143,14 @@ export function initEntries() {
       const delBtn = document.createElement("button");
       delBtn.textContent = "🗑️";
       delBtn.addEventListener("click", () => {
-        entries = entries.filter(e => e.id !== entry.id);
-        storage.saveEntries(entries);
-        renderList();
+		  const ok = confirm(`Delete entry from ${entry.date}?`);
+
+		  if (!ok) return;
+
+		  entries = entries.filter(e => e.id !== entry.id);
+		  storage.saveEntries(entries);
+		  renderList();
+
       });
 
       li.append(" ", editBtn, " ", delBtn);
