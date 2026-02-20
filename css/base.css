@@ -75,3 +75,9 @@ button:focus-visible {
   position: relative;
   max-height: 300px;
 }
+
+#view-charts {
+  height: 300px;
+  position: relative;
+}
+
