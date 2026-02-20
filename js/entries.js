@@ -123,7 +123,7 @@ export function initEntries() {
 
   entries
     .slice()
-    .sort((a, b) => new Date(a.date) - new Date(b.date))   // chronological
+    .sort((a, b) => new Date(b.date) - new Date(a.date))   // Ascneding: .sort((a, b) => new Date(a.date) - new Date(b.date))  
     .forEach(entry => {
       const li = document.createElement("li");
       li.textContent = `${entry.date} — ${entry.weight}`;
