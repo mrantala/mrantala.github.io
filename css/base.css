@@ -69,3 +69,7 @@ button:focus-visible {
   margin-bottom: 1rem;
   font-size: 0.9rem;
 }
+
+#test-chart {
+  max-height: 300px;
+}

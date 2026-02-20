@@ -85,11 +85,12 @@
 	  <ul id="entry-list"></ul>
 	</section>
 
-    <!-- Charts View -->
-    <section id="view-charts" class="view hidden">
-      <h1>Charts</h1>
-      <p>Charting will go here.</p>
-    </section>
+	<!-- Charts View -->
+	<section id="view-charts" class="view hidden">
+	  <h1>Charts</h1>
+	  <canvas id="test-chart" width="400" height="200"></canvas>
+	</section>
+
 
     <!-- Settings View -->
 	<section id="view-settings" class="view hidden">
@@ -132,10 +133,11 @@
     <section id="view-info" class="view hidden">
       <h1>Info</h1>
       <p>About this app.</p>
-	  <p id="app-version">v0.0.28</p>
+	  <p id="app-version">v0.0.30c</p>
     </section>
   </main>
 
+  <script src="/libs/chart.umd.js"></script>
   <script type="module" src="js/main.js"></script>
 </body>
 

@@ -1,3 +1,6 @@
+import { initTestChart } from "./chart.js";
+
+
 export function showView(name) {
   const buttons = document.querySelectorAll("nav button");
   const views = document.querySelectorAll(".view");
@@ -13,6 +16,17 @@ export function showView(name) {
 
   views.forEach(v => v.classList.toggle("hidden", v.id !== targetId));
   buttons.forEach(b => b.classList.toggle("active", b.dataset.view === name));
+
+  // 👉 Hook chart initialization here
+	if (name === "charts") {
+	  requestAnimationFrame(() => {
+		requestAnimationFrame(() => {
+		  initTestChart();
+		});
+	  });
+	}
+
+
 
   //0.0.17: No longer show where we lef off, localStorage.setItem("activeView", name);
 }
