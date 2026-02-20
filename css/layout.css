@@ -22,7 +22,8 @@ main {
 }
 
 /* Landscape: nav on left */
-@media (min-width: 700px) and (orientation: landscape) {
+/*@media (min-width: 700px) and (orientation: landscape) {*/
+@media (orientation: landscape) {
   body {
     flex-direction: row;
   }
