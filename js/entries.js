@@ -57,7 +57,8 @@ export function initEntries() {
     const date = document.getElementById("entry-date").value;
     const weight = parseFloat(document.getElementById("entry-weight").value);
     const comments = document.getElementById("entry-comments").value;
-
+	const primary = document.getElementById("entry-primary").checked;
+	
     if (!date || !weight) return;
 
 	//Resonableness check
@@ -87,6 +88,7 @@ export function initEntries() {
       const entry = entries.find(e => e.id === editingId);
       entry.date = date;
       entry.weight = weight;
+	  entry.primary = primary;
       entry.comments = comments;
       editingId = null;
     } else {
@@ -94,6 +96,7 @@ export function initEntries() {
         id: Date.now(),
         date,
         weight,
+		primary,
         comments
       });
     }
@@ -135,7 +138,7 @@ export function initEntries() {
         document.getElementById("entry-date").value = entry.date;
         document.getElementById("entry-weight").value = entry.weight;
         document.getElementById("entry-comments").value = entry.comments;
-
+		document.getElementById("entry-primary").checked = entry.primary ?? true;
         editBanner.classList.remove("hidden");
         cancelBtn.classList.remove("hidden");
       });
@@ -181,14 +184,14 @@ export function initEntries() {
 		const cols = header.split(",");
 
 		if (cols.length < 4) {
-		  alert("Invalid CSV format. Expected: id,date,weight,comments");
+		  alert("Invalid CSV format. Expected: id,date,weight,primary,comments");
 		  return;
 		}
 
 		const imported = dataRows.map(row => {
 		  const parts = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || [];
 
-		  const [id, date, weight, comments] = parts.map(v =>
+		  const [id, date, weight, primary,comments] = parts.map(v =>
 			v.replace(/^"|"$/g, "").replace(/""/g, '"')
 		  );
 
@@ -196,6 +199,10 @@ export function initEntries() {
 			id: Number(id),
 			date,
 			weight: Number(weight),
+			primary: primary === undefined || primary === ""
+			  ? true
+			  : primary.toLowerCase() === "true",
+			
 			comments: comments || ""
 		  };
 		});
@@ -205,7 +212,6 @@ export function initEntries() {
 		  const e = imported[i];
 		  const rowNum = i + 2; // +2 because row 1 is header, row 2 is first data row
 
-			console.log(e);
 		  if (!e.id || isNaN(e.id)) {
 			alert(`Row ${rowNum}: Invalid ID value "${e.id}". Import cancelled.`);
 			continue;
@@ -220,6 +226,20 @@ export function initEntries() {
 			alert(`Row ${rowNum}: Invalid weight value "${e.weight}". Import cancelled.`);
 			continue;
 		  }
+
+		 // Normalize the value once
+		 const primaryVal = (e.primary ?? "").toString().trim().toLowerCase();
+
+		 // Valid values are only "true" or "false"
+		 const isPrimaryValid =
+		   primaryVal === "true" ||
+		   primaryVal === "false" ||
+		   primaryVal === ""; // allow empty → defaults to true
+
+		 if (!isPrimaryValid) {
+		   alert(`Row ${rowNum}: Invalid primary value "${e.primary}". Expected true/false.`);
+		   continue;
+		 }
 		  
 		  validImportedRows.push(e)
 		}
@@ -257,11 +277,12 @@ function exportCSV(entries) {console.log("Hello");
 
   // Build CSV header + rows
   const rows = [
-    ["id", "date", "weight", "comments"],
+    ["id", "date", "weight", "primary","comments"],
     ...sorted.map(e => [
       e.id,
       e.date,
       e.weight,
+	  e.primary,
       (e.comments || "").replace(/\n/g, " ") // remove newlines
     ])
   ];
