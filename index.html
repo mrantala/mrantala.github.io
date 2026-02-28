@@ -95,7 +95,65 @@
 	<!-- Charts View -->
 	<section id="view-charts" class="view hidden">
 	  <h1>Charts</h1>
-	  <canvas id="test-chart" width="400" height="200"></canvas>
+
+	  <!-- Chart Type Selector -->
+	  <div class="form-group">
+		<label for="chart-type">Chart Type</label>
+		<select id="chart-type">
+		  <option value="daily">Daily Weight</option>
+		  <option value="weeklyMedian">Weekly Median Weight</option>
+		</select>
+	  </div>
+
+	  <!-- Daily Controls -->
+	  <div id="daily-controls" class="chart-controls">
+		<label>Date Range</label>
+		<div class="button-group">
+		  <button data-range="7">7d</button>
+		  <button data-range="14">14d</button>
+		  <button data-range="30">30d</button>
+		  <button data-range="90">90d</button>
+		  <button data-range="180">180d</button>
+		  <button data-range="365">365d</button>
+		  <button data-range="custom">Custom</button>
+		</div>
+
+		<div id="daily-custom-range" class="hidden">
+		  <label>Custom Start</label>
+		  <input type="date" id="daily-start">
+		  <label>Custom End</label>
+		  <input type="date" id="daily-end">
+		</div>
+	  </div>
+
+	  <!-- Weekly Controls -->
+	  <div id="weekly-controls" class="chart-controls hidden">
+		<label>Weeks</label>
+		<div class="button-group">
+		  <button data-weeks="4">4w</button>
+		  <button data-weeks="12">12w</button>
+		  <button data-weeks="26">26w</button>
+		  <button data-weeks="52">52w</button>
+		</div>
+	  </div>
+
+	  <!-- Shared Toggles -->
+	  <div class="form-group">
+		<label>
+		  <input type="checkbox" id="primary-only" checked>
+		  Primary entries only
+		</label>
+	  </div>
+
+	  <div class="form-group">
+		<label>
+		  <input type="checkbox" id="include-regression">
+		  Include trendline
+		</label>
+	  </div>
+
+	  <!-- Chart Canvas -->
+	  <canvas id="weight-chart"></canvas>
 	</section>
 
 

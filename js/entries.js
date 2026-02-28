@@ -1,5 +1,5 @@
 import { storage } from "./storage.js";
-
+let entries = [];
 //let entries = storage.loadEntries();
 // let entries = storage.loadEntries().sort((a, b) => {
   // return new Date(a.date) - new Date(b.date);
@@ -27,7 +27,7 @@ export function initEntries() {
   const form = document.getElementById("entry-form");
   const list = document.getElementById("entry-list");
   
-  let entries = storage.loadEntries() || [];
+  entries = storage.loadEntries() || [];
   document.getElementById("export-btn").addEventListener("click", () => exportCSV(entries));
 
   //renderEntries(entries);
@@ -303,4 +303,8 @@ function exportCSV(entries) {console.log("Hello");
   a.click();
 
   URL.revokeObjectURL(url);
+}
+
+export function getEntries() {
+  return entries;
 }
