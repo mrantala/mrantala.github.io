@@ -27,6 +27,7 @@ export function initChart() {
     type: "line",
     data: { datasets: [] },
     options: {
+		animation: false,
 		responsive: true,
 		maintainAspectRatio: false,
 		scales: {
@@ -59,28 +60,45 @@ export function initChart() {
 
 // Main entry point
 export function renderChart(mode, entries, options) {
-
+	
   const { points, regression } = prepareData(mode, entries, options);
   
   const fixedPoints = points.map(p => ({
-  x: new Date(p.x),   // force rehydration
-  y: p.y
-}));
+	  x: new Date(p.x),   // force rehydration
+	  y: p.y
+  }));
   chart.data.datasets.length = 0;
-  
+  chart.data.datasets.push(
+    {
+      type: "line",
+	  label: "Daily Weight",
+      data: fixedPoints,
+	  parsing: {
+       xAxisKey: "x",
+       yAxisKey: "y"
+      },
+
+      borderColor: "#333",
+      borderWidth: 1.5,
+      tension: 0.2,
+      pointRadius: 0,
+	  order: 10,
+	  fill: false,
+	  backgroundColor: "rgba(0,0,0,0)"   // <— REQUIRED
+    }
+  );
+
   if (regression) {
 	    // Rehydrate regression dates
   const fixedRegression = regression.map(p => ({
-    x: new Date(p.x),
-    y: p.y
+	x: new Date(p.x),
+	y: p.y
   }));
 
 
 	const first = fixedRegression[0].y;
 	const last = fixedRegression[fixedRegression.length - 1].y;
 
-	// const isIncreasing = last < first;
-	// const trendColor = isIncreasing ? "#2e8b57" : "#c0392b" ;
 	const isIncreasing = last < first;
 	const trendColor = isIncreasing ? "#00cc44" : "#ff3333";
 
@@ -102,7 +120,7 @@ export function renderChart(mode, entries, options) {
 
 	  // ⭐ HALO / GLOW EFFECT ⭐
 	  borderShadowColor: trendColor + "55",   // same color, 33% opacity
-	  borderShadowBlur: 8,                    // size of the glow
+	  borderShadowBlur: 80,                    // size of the glow
 
 	  pointRadius: 0,
 	  tension: 0.1,
@@ -117,28 +135,6 @@ export function renderChart(mode, entries, options) {
 	  backgroundColor: "rgba(0,0,0,0)"
 	});
   }
-  
-  chart.data.datasets.push(
-    {
-      type: "line",
-	  label: "Daily Weight",
-      data: fixedPoints,
-	  parsing: {
-       xAxisKey: "x",
-       yAxisKey: "y"
-      },
-
-      borderColor: "#444",
-      borderWidth: 2,
-      tension: 0.2,
-      pointRadius: 0,
-	  order: 10,
-	  fill: false,
-	  backgroundColor: "rgba(0,0,0,0)"   // <— REQUIRED
-    }
-  );
-
-  
 
   chart.update();
   window.chart = chart;
@@ -166,6 +162,46 @@ function modeLabel(mode) {
     case "weeklyMedian": return "Weekly Median Weight";
     default: return "Chart";
   }
+}
+
+function prepareWeeklyMedian(entries, { weeks, primaryOnly, includeRegression }) {
+  const now = new Date();
+  const start = new Date(now);
+  start.setDate(start.getDate() - weeks * 7);
+
+  // Filter entries
+  const filtered = entries.filter(e => {
+    if (primaryOnly && !e.primary) return false;
+    const d = new Date(e.date);
+    return d >= start;
+  });
+
+  // Group weights by Monday-of-week
+  const weekMap = new Map();
+
+  for (const e of filtered) {
+    const d = new Date(e.date);
+    const monday = startOfWeek(d); // returns a Date
+    const key = monday.toISOString().slice(0, 10); // YYYY-MM-DD
+
+    if (!weekMap.has(key)) weekMap.set(key, []);
+    weekMap.get(key).push(e.weight);
+  }
+
+  // Build points array: { x: Date(monday), y: median }
+  const points = [...weekMap.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([weekStart, weights]) => ({
+      x: new Date(weekStart),     // Monday of that week
+      y: median(weights)
+    }));
+
+  // Compute regression on weekly points
+  const regression = includeRegression
+    ? computeRegression(points)
+    : null;
+
+  return { points, regression };
 }
 
 function prepareDaily(entries, { startDate, endDate, primaryOnly, includeRegression }) {
@@ -198,7 +234,8 @@ function prepareDaily(entries, { startDate, endDate, primaryOnly, includeRegress
   //return { labels, data, regression };
 }
 
-function prepareWeeklyMedian(entries, { weeks, primaryOnly, includeRegression }) {
+function prepareWeeklyMedian_OLD(entries, { weeks, primaryOnly, includeRegression }) {
+  console.log(entries,weeks,primaryOnly,includeRegression);
   const now = new Date();
   const start = new Date(now);
   start.setDate(start.getDate() - weeks * 7);

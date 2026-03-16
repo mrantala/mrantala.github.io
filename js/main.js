@@ -27,14 +27,3 @@ window.addEventListener("orientationchange", () => {
     document.body.style.display = "";
   });
 });
-
-//window.addEventListener("orientationchange", () => {
-  // setTimeout(() => {
-    // applyLayout();   // or whatever your layout function is called
-  // }, 50);
-// });
-//showView("view-entry");
-
-// if ("serviceWorker" in navigator) {
-  // navigator.serviceWorker.register("./sw.js");
-// }

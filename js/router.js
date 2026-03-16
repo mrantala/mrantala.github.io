@@ -1,28 +1,12 @@
 import { initChart, renderChart } from "./weightChart.js";
 import { getEntries } from "./entries.js";
 
-let dailyRange = 7; // default
+let dailyRange = -99; // default
 
 function setDailyRange(range) {
   dailyRange = range;
+  renderCurrentChart();
 }
-
-// function getDailyRange() {
-  // if (dailyRange === "custom") {
-    // const start = document.getElementById("daily-start").value;
-    // const end = document.getElementById("daily-end").value;
-    // return {
-      // startDate: new Date(start),
-      // endDate: new Date(end)
-    // };
-  // }
-
-  // const endDate = new Date();
-  // const startDate = new Date();
-  // startDate.setDate(startDate.getDate() - Number(dailyRange));
-
-  // return { startDate, endDate };
-// }
 
 function getDailyRange() {
   const entries = getEntries();
@@ -33,13 +17,30 @@ function getDailyRange() {
 
   //Find earliest and latest dates in the dataset
   const dates = entries.map(e => new Date(e.date));
-  const startDate = new Date(Math.min(...dates));
+  let startDate = new Date(Math.min(...dates));
   const endDate = new Date(Math.max(...dates));
 
+	console.log(dailyRange,dailyRange>-1);
+  if (dailyRange >-1){
+	  startDate = new Date(endDate.getTime() - dailyRange * 24 * 60 * 60 * 1000);
+  }
   return { startDate, endDate };
 }
 
+function getWeeklyRange(){
+  const entries = getEntries();
+  if (!entries || entries.length === 0) {
+    const today = new Date();
+    return { startDate: today, endDate: today };
+  }
 
+  //Find earliest and latest dates in the dataset
+  const dates = entries.map(e => new Date(e.date));	
+  if (dailyRange >-1){
+	  return dailyRange;
+  }	
+  return 9999;
+}
 
 function showChartsView() {
   initChart();
@@ -53,7 +54,7 @@ function setupChartControls() {
   const includeRegression = document.getElementById("include-regression");
 
   typeSelect.addEventListener("change", () => {
-    updateVisibleControls();
+    //updateVisibleControls();
     renderCurrentChart();
   });
 
@@ -85,10 +86,10 @@ function renderCurrentChart() {
 
   const primaryOnly = document.getElementById("primary-only").checked;
   const includeRegression = document.getElementById("include-regression").checked;
-  console.log(document.getElementById("include-regression").checked);
 
   if (mode === "daily") {
     const { startDate, endDate } = getDailyRange();
+	console.log(dailyRange,startDate, endDate );
     renderChart("daily", entries, {
       startDate,
       endDate,
@@ -106,8 +107,6 @@ function renderCurrentChart() {
     });
   }
 }
-
-
   
 export function showView(name) {
   const buttons = document.querySelectorAll("nav button");

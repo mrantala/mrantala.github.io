@@ -82,6 +82,8 @@
 		<select id="chart-type">
 		  <option value="daily">Daily Weight</option>
 		  <option value="weeklyMedian">Weekly Median Weight</option>
+		  <option value="weeklyMedian">Monthly Median Weight</option>
+		  <option value="weeklyMedian">Annual Median Weight</option>
 		</select>
 	  </div>
 
@@ -89,6 +91,7 @@
 	  <div id="daily-controls" class="chart-controls">
 		<label>Date Range</label>
 		<div class="button-group">
+		  <button data-range="-1">All</button>
 		  <button data-range="7">7d</button>
 		  <button data-range="14">14d</button>
 		  <button data-range="30">30d</button>
@@ -178,7 +181,7 @@
     <section id="view-info" class="view hidden">
       <h1>Info</h1>
       <p>About this app.</p>
-	  <p id="app-version">v0.0.32</p>
+	  <p id="app-version">v0.0.33 (Started Weekly MEdian Graphs)</p>
     </section>
   </main>
 
