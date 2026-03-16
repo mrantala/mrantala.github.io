@@ -201,7 +201,7 @@ export function initEntries() {
 			weight: Number(weight),
 			primary: primary === undefined || primary === ""
 			  ? true
-			  : primary.toLowerCase() === "true",
+			  : ["true", "t"].includes(primary.toLowerCase())	,
 			
 			comments: comments || ""
 		  };

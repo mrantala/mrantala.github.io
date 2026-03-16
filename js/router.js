@@ -1,4 +1,4 @@
-import { initChart, renderChart } from "./chart.js";
+import { initChart, renderChart } from "./weightChart.js";
 import { getEntries } from "./entries.js";
 
 let dailyRange = 7; // default
@@ -85,6 +85,7 @@ function renderCurrentChart() {
 
   const primaryOnly = document.getElementById("primary-only").checked;
   const includeRegression = document.getElementById("include-regression").checked;
+  console.log(document.getElementById("include-regression").checked);
 
   if (mode === "daily") {
     const { startDate, endDate } = getDailyRange();
