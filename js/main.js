@@ -2,10 +2,6 @@ import { initRouter, showView } from "./router.js";
 import { initEntries } from "./entries.js";
 import { initSettings } from "./settings.js";
 
-console.log("MAIN sees Chart:", Chart);
-console.log("window.Chart:", window.Chart);
-
-
 //Wait until DOM is loaded so that when I read the entries, storage is ready
 document.addEventListener("DOMContentLoaded", () => {
   initRouter();

@@ -146,8 +146,8 @@ function prepareData(mode, entries, options) {
   switch (mode) {
     case "daily":
       return prepareDaily(entries, options);
-    case "weeklyMedian":
-      return prepareWeeklyMedian(entries, options);
+    //case "weeklyMedian":
+    //  return prepareWeeklyMedian(entries, options);
     // future:
     // case "monthlyMedian": ...
     // case "yearlySummary": ...
@@ -164,7 +164,7 @@ function modeLabel(mode) {
   }
 }
 
-function prepareWeeklyMedian(entries, { weeks, primaryOnly, includeRegression }) {
+/* function prepareWeeklyMedian(entries, { weeks, primaryOnly, includeRegression }) {
   const now = new Date();
   const start = new Date(now);
   start.setDate(start.getDate() - weeks * 7);
@@ -202,7 +202,7 @@ function prepareWeeklyMedian(entries, { weeks, primaryOnly, includeRegression })
     : null;
 
   return { points, regression };
-}
+} */
 
 function prepareDaily(entries, { startDate, endDate, primaryOnly, includeRegression }) {
   const filtered = entries.filter(e => {
@@ -234,7 +234,7 @@ function prepareDaily(entries, { startDate, endDate, primaryOnly, includeRegress
   //return { labels, data, regression };
 }
 
-function prepareWeeklyMedian_OLD(entries, { weeks, primaryOnly, includeRegression }) {
+/* function prepareWeeklyMedian_OLD(entries, { weeks, primaryOnly, includeRegression }) {
   console.log(entries,weeks,primaryOnly,includeRegression);
   const now = new Date();
   const start = new Date(now);
@@ -269,7 +269,7 @@ function prepareWeeklyMedian_OLD(entries, { weeks, primaryOnly, includeRegressio
     : null;
 
   return { labels, data, regression };
-}
+} */
 
 function startOfWeek(date) {
   const d = new Date(date);
