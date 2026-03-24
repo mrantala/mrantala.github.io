@@ -143,14 +143,14 @@ console.log("REAL CHART:", chart);
 
 // Dispatcher
 function prepareData(mode, entries, options) {
+	console.log(mode);
+	console.log(entries);
+	console.log(options);
   switch (mode) {
     case "daily":
       return prepareDaily(entries, options);
-    //case "weeklyMedian":
-    //  return prepareWeeklyMedian(entries, options);
-    // future:
-    // case "monthlyMedian": ...
-    // case "yearlySummary": ...
+    case "weeklyMedian":
+      return prepareWeeklyMedian(entries, options);
     default:
       return { labels: [], data: [] };
   }
@@ -164,7 +164,7 @@ function modeLabel(mode) {
   }
 }
 
-/* function prepareWeeklyMedian(entries, { weeks, primaryOnly, includeRegression }) {
+function prepareWeeklyMedian(entries, { weeks, primaryOnly, includeRegression }) {
   const now = new Date();
   const start = new Date(now);
   start.setDate(start.getDate() - weeks * 7);
@@ -202,7 +202,7 @@ function modeLabel(mode) {
     : null;
 
   return { points, regression };
-} */
+}
 
 function prepareDaily(entries, { startDate, endDate, primaryOnly, includeRegression }) {
   const filtered = entries.filter(e => {
@@ -231,45 +231,8 @@ function prepareDaily(entries, { startDate, endDate, primaryOnly, includeRegress
 
   return { points, regression };
 
-  //return { labels, data, regression };
 }
 
-/* function prepareWeeklyMedian_OLD(entries, { weeks, primaryOnly, includeRegression }) {
-  console.log(entries,weeks,primaryOnly,includeRegression);
-  const now = new Date();
-  const start = new Date(now);
-  start.setDate(start.getDate() - weeks * 7);
-
-  const filtered = entries.filter(e => {
-    if (primaryOnly && !e.primary) return false;
-    const d = new Date(e.date);
-    return d >= start;
-  });
-
-  const weekMap = new Map();
-
-  for (const e of filtered) {
-    const d = new Date(e.date);
-    const monday = startOfWeek(d);
-    const key = monday.toISOString().slice(0, 10);
-
-    if (!weekMap.has(key)) weekMap.set(key, []);
-    weekMap.get(key).push(e.weight);
-  }
-
-  const data = [];
-
-  for (const [weekStart, weights] of [...weekMap.entries()].sort()) {
-    labels.push(weekStart);
-    data.push(median(weights));
-  }
-
-  const regression = includeRegression
-    ? computeRegression(points)
-    : null;
-
-  return { labels, data, regression };
-} */
 
 function startOfWeek(date) {
   const d = new Date(date);
