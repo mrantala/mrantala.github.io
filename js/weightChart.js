@@ -67,6 +67,13 @@ export function renderChart(groupingType,calcType, entries, options) {
 	  x: new Date(p.x),   // force rehydration
 	  y: p.y
   }));
+  
+  const firstDate = fixedPoints[0]?.x;
+  const lastDate = fixedPoints[fixedPoints.length - 1]?.x;
+
+  const spansMultipleYears =
+  firstDate && lastDate && firstDate.getFullYear() !== lastDate.getFullYear();
+  
   chart.data.datasets.length = 0;
   chart.data.datasets.push(
     {
@@ -135,6 +142,32 @@ export function renderChart(groupingType,calcType, entries, options) {
 	  backgroundColor: "rgba(0,0,0,0)"
 	});
   }
+
+	const xScale = chart.options.scales.x;
+
+	if (groupingType === "daily") {
+	  xScale.time.unit = "day";
+	  xScale.time.displayFormats = spansMultipleYears
+		? { day: "MMM yyyy" }
+		: { day: "M/d" };
+	}
+
+	if (groupingType === "weekly") {
+	  xScale.time.unit = "week";
+	  xScale.time.displayFormats = spansMultipleYears
+		? { week: "MMM yyyy" }
+		: { week: "M/d" };
+	}
+
+	if (groupingType === "monthly") {
+	  xScale.time.unit = "month";
+	  xScale.time.displayFormats = { month: "MMM yyyy" };
+	}
+
+	if (groupingType === "yearly") {
+	  xScale.time.unit = "year";
+	  xScale.time.displayFormats = { year: "yyyy" };
+	}
 
   chart.update();
   window.chart = chart;
