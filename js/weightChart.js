@@ -149,7 +149,14 @@ function prepareData(groupingType, calcType, entries, { primaryOnly, includeRegr
   console.log(entries.length);
   console.log(primaryOnly);
   console.log(includeRegression);
-  // Convert all dates once
+
+/*   const filtered = entries.filter(e => {
+    if (primaryOnly && !e.primary) return false;
+    // const d = new Date(e.date);
+    // return d >= startDate && d <= endDate;
+  }); */
+  
+  // Convert all dates once  
   const normalized = entries.map(e => ({
     ...e,
     dateObj: new Date(e.date)
@@ -223,7 +230,7 @@ function prepareData(groupingType, calcType, entries, { primaryOnly, includeRegr
     ? computeRegression(points)
     : null;
 
-  return { points };;
+  return { points, regression };;
 }
 
 function startOfWeek(date) {
