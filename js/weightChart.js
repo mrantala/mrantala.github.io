@@ -59,9 +59,9 @@ export function initChart() {
 }
 
 // Main entry point
-export function renderChart(mode, entries, options) {
-	
-  const { points, regression } = prepareData(mode, entries, options);
+export function renderChart(groupingType,calcType, entries, options) {
+		
+  const { points, regression } = prepareData(groupingType,calcType, entries, options);
   
   const fixedPoints = points.map(p => ({
 	  x: new Date(p.x),   // force rehydration
@@ -141,30 +141,152 @@ export function renderChart(mode, entries, options) {
 console.log("REAL CHART:", chart);
 }
 
-// Dispatcher
-function prepareData(mode, entries, options) {
-	console.log(mode);
-	console.log(entries);
-	console.log(options);
-  switch (mode) {
+function prepareData(groupingType, calcType, entries, { primaryOnly, includeRegression }) {
+  if (!entries || entries.length === 0) return { points: [] };
+
+  console.log(groupingType);
+  console.log(calcType);
+  console.log(entries.length);
+  console.log(primaryOnly);
+  console.log(includeRegression);
+  // Convert all dates once
+  const normalized = entries.map(e => ({
+    ...e,
+    dateObj: new Date(e.date)
+  }));
+
+  // Grouping function
+  const groups = new Map();
+
+  for (const e of normalized) {
+    let key;
+
+	const w = Number(e.weight);
+	if (!Number.isFinite(w) || w === 0) continue;
+
+    switch (groupingType) {
+      case "daily": {
+        // YYYY-MM-DD
+        key = e.dateObj.toISOString().slice(0, 10);
+        break;
+      }
+
+      case "weekly": {
+        const monday = startOfWeek(e.dateObj);
+        key = monday.toISOString().slice(0, 10);
+        break;
+      }
+
+      case "monthly": {
+        const y = e.dateObj.getFullYear();
+        const m = e.dateObj.getMonth(); // 0–11
+        key = `${y}-${m}`;
+        break;
+      }
+
+      case "yearly": {
+        const y = e.dateObj.getFullYear();
+        key = `${y}`;
+        break;
+      }
+
+      default:
+        throw new Error("Unknown groupingType: " + groupingType);
+    }
+
+	  if (!groups.has(key)) groups.set(key, []);
+	  groups.get(key).push(w);
+
+  }
+
+  // Compute average or median for each group
+	const points = [];
+
+	for (const [key, weights] of groups.entries()) {
+	  if (weights.length === 0) continue; // <-- prevents empty buckets
+
+	  const y = calcType === "median"
+		? median(weights)
+		: average(weights);
+
+	  const x = keyToDate(key, groupingType);
+
+	  points.push({ x, y });
+	}
+
+
+  // Sort by x (Date)
+  points.sort((a, b) => a.x - b.x);
+
+  //Compute regression on weekly points
+  const regression = includeRegression
+    ? computeRegression(points)
+    : null;
+
+  return { points };;
+}
+
+function startOfWeek(date) {
+  const d = new Date(date);
+  const day = d.getDay(); // 0=Sun
+  const diff = (day === 0 ? -6 : 1) - day; // shift to Monday
+  d.setDate(d.getDate() + diff);
+  return d;
+}
+
+function average(arr) {
+  return arr.reduce((a, b) => a + b, 0) / arr.length;
+}
+
+function median(arr) {
+  const sorted = [...arr].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 === 0
+    ? (sorted[mid - 1] + sorted[mid]) / 2
+    : sorted[mid];
+}
+
+function keyToDate(key, groupingType) {
+  switch (groupingType) {
     case "daily":
-      return prepareDaily(entries, options);
-    case "weeklyMedian":
-      return prepareWeeklyMedian(entries, options);
-    default:
-      return { labels: [], data: [] };
+    case "weekly":
+      return new Date(key); // already YYYY-MM-DD
+
+    case "monthly": {
+      const [y, m] = key.split("-").map(Number);
+      return new Date(y, m, 1);
+    }
+
+    case "yearly": {
+      const y = Number(key);
+      return new Date(y, 0, 1);
+    }
   }
 }
 
-function modeLabel(mode) {
-  switch (mode) {
-    case "daily": return "Daily Weight";
-    case "weeklyMedian": return "Weekly Median Weight";
-    default: return "Chart";
-  }
+
+function computeRegression(points) {
+  if (points.length < 2) return null;
+
+  const xs = points.map((_, i) => i);
+  const ys = points.map(p => p.y);
+
+  const n = xs.length;
+  const sumX = xs.reduce((a, b) => a + b, 0);
+  const sumY = ys.reduce((a, b) => a + b, 0);
+  const sumXY = xs.reduce((a, b, i) => a + b * ys[i], 0);
+  const sumX2 = xs.reduce((a, b) => a + b * b, 0);
+
+  const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+  const intercept = (sumY - slope * sumX) / n;
+
+  return xs.map((x, i) => ({
+    x: points[i].x,          // EXACT SAME DATE OBJECT
+    y: slope * x + intercept
+  }));
 }
 
-function prepareWeeklyMedian(entries, { weeks, primaryOnly, includeRegression }) {
+/* function prepareWeeklyMedian(entries, { weeks, primaryOnly, includeRegression }) {
   const now = new Date();
   const start = new Date(now);
   start.setDate(start.getDate() - weeks * 7);
@@ -202,9 +324,27 @@ function prepareWeeklyMedian(entries, { weeks, primaryOnly, includeRegression })
     : null;
 
   return { points, regression };
-}
+} */
 
-function prepareDaily(entries, { startDate, endDate, primaryOnly, includeRegression }) {
+
+// Dispatcher
+/* function prepareData_old(groupingType,calcType, entries, options) {
+	console.log(groupingType);
+	console.log(calcType);
+	console.log(entries);
+	console.log(options);
+  switch (mode) {
+    case "daily":
+      return prepareDaily(entries, options);
+    case "weeklyMedian":
+      return prepareWeeklyMedian(entries, options);
+    default:
+      return { labels: [], data: [] };
+  }
+} */
+
+
+/* function prepareDaily(entries, { startDate, endDate, primaryOnly, includeRegression }) {
   const filtered = entries.filter(e => {
     if (primaryOnly && !e.primary) return false;
     const d = new Date(e.date);
@@ -231,40 +371,4 @@ function prepareDaily(entries, { startDate, endDate, primaryOnly, includeRegress
 
   return { points, regression };
 
-}
-
-
-function startOfWeek(date) {
-  const d = new Date(date);
-  const day = d.getDay(); // 0=Sun
-  const diff = (day === 0 ? -6 : 1) - day; // shift to Monday
-  d.setDate(d.getDate() + diff);
-  return d;
-}
-
-function median(arr) {
-  const s = [...arr].sort((a, b) => a - b);
-  const mid = Math.floor(s.length / 2);
-  return s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2;
-}
-
-function computeRegression(points) {
-  if (points.length < 2) return null;
-
-  const xs = points.map((_, i) => i);
-  const ys = points.map(p => p.y);
-
-  const n = xs.length;
-  const sumX = xs.reduce((a, b) => a + b, 0);
-  const sumY = ys.reduce((a, b) => a + b, 0);
-  const sumXY = xs.reduce((a, b, i) => a + b * ys[i], 0);
-  const sumX2 = xs.reduce((a, b) => a + b * b, 0);
-
-  const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
-  const intercept = (sumY - slope * sumX) / n;
-
-  return xs.map((x, i) => ({
-    x: points[i].x,          // EXACT SAME DATE OBJECT
-    y: slope * x + intercept
-  }));
-}
+} */

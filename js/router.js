@@ -203,25 +203,10 @@ function renderCurrentChart() {console.log("line 184");//console.log(entriesZ);
   const primaryOnly = document.getElementById("primary-only").checked;
   const includeRegression = document.getElementById("include-regression").checked;
 
-  if (groupingType === "daily") {
-    const { startDate, endDate } = getDailyRange();
-	console.log(dateRange,startDate, endDate );
-    renderChart(groupingType, entries, {
-      startDate,
-      endDate,
+  renderChart(groupingType,calcType,entries,  {
       primaryOnly,
       includeRegression
     });
-  }
-
-  if (groupingType === "weekly") {
-    const weeks = getWeeklyRange();
-    renderChart("weeklyMedian", entries, {
-      weeks,
-      primaryOnly,
-      includeRegression
-    });
-  }
 }
   
 export function showView(name) {
